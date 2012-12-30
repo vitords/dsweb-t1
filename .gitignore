@@ -1,0 +1,4 @@
+*.class
+*.war
+
+dsweb-t1.war/

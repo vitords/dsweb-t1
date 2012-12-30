@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Admin</title>
+</h:head>
+<h:body>
+
+    <h:form id="messagesForm">
+        <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+    </h:form>
+
+    <h:form id="form">
+
+        <p:tabView id="tabView" dynamic="true" cache="true">
+
+            <p:tab id="tab1" title="Cadastrar Produto">
+                <h:panelGrid id="grid" columns="3" style="margin-bottom:10px" cellpadding="10">
+
+                    <h:outputLabel for="name" value="Nome:" />
+                    <p:inputText id="name" value="#{productController.currentProduct.name}" required="true" label="Nome" >
+                        <f:validateLength minimum="3" />
+                    </p:inputText>
+                    <p:message for="name" />
+
+                    <h:outputLabel for="description" value="Descrição:" />
+                    <p:inputTextarea id="description" value="#{productController.currentProduct.description}" required="true" label="Descrição"/>
+                    <p:message for="description"  />
+
+                    <h:outputLabel for="price" value="Preço:" />
+                    <p:inputText id="price" value="#{productController.currentProduct.price}" required="true" label="Preço"/>
+                    <p:message for="price"/>
+
+                    <h:outputLabel for="weight" value="Peso:" />
+                    <p:inputText id="weight" value="#{productController.currentProduct.weight}" required="true" label="Peso"/>
+                    <p:message for="weight"/>
+
+                    <h:outputLabel for="quantity" value="Em estoque:" />
+                    <p:inputText id="quantity" value="#{productController.currentProduct.quantityInStock}" required="true" label="Em estoque"/>
+                    <p:message for="quantity"/>
+                </h:panelGrid>
+
+                <p:commandButton value="Cadastrar" update="tab1,:form2:display" id="ajax" actionListener="#{productController.save}" />
+            </p:tab>
+
+            <p:tab id="tab2" title="Atualizar Produto">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage id="tab2Img" value="/images/test.png" />
+                    <h:outputText value="Nothing to see here."/>
+                </h:panelGrid>
+            </p:tab>
+
+            <p:tab id="tab3" title="Remover Produto">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage id="tab3Img" value="/images/test.png" />
+                    <h:outputText value="Nothing to see here."/>
+                </h:panelGrid>
+            </p:tab>
+
+        </p:tabView>
+    </h:form>
+
+    <h:form id="form2">
+        <p:panel id="display" header="Produto Cadastrado" style="margin-top:10px;" cellpadding="10">
+            <h:panelGrid columns="2">
+
+                <h:outputText value="Referência: " />
+                <h:outputText value="#{productController.lastProduct.id}" />
+
+                <h:outputText value="Nome: " />
+                <h:outputText value="#{productController.lastProduct.name}" />
+
+                <h:outputText value="Descrição: " />
+                <h:outputText value="#{productController.lastProduct.description}" />
+
+                <h:outputText value="Preço: " />
+                <h:outputText value="#{productController.lastProduct.price}" />
+
+                <h:outputText value="Peso: " />
+                <h:outputText value="#{productController.lastProduct.weight}" />
+
+                <h:outputText value="Unidades em estoque: " />
+                <h:outputText value="#{productController.lastProduct.quantityInStock}" />
+
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+
+</h:body>
+</html>

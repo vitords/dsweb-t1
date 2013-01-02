@@ -55,21 +55,6 @@
       <output-path>$PROJECT_DIR$/target</output-path>
       <root id="archive" name="dsweb-t1.war">
         <element id="artifact" artifact-name="dsweb-t1:war exploded" />
-        <element id="directory" name="WEB-INF">
-          <element id="directory" name="lib">
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/enterprise/cdi-api/1.0-SP4/cdi-api-1.0-SP4.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/spec/javax/interceptor/jboss-interceptors-api_1.1_spec/1.0.0.Beta1/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/inject/inject-api/1.0.0-PRD/inject-api-1.0.0-PRD.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/faces/jsf-api/2.1/jsf-api-2.1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/org/primefaces/primefaces/3.4.2/primefaces-3.4.2.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.1.1/jackson-databind-2.1.1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.1.1/jackson-annotations-2.1.1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.1.1/jackson-core-2.1.1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1.jar" />
-          </element>
-        </element>
       </root>
     </artifact>
     <artifact type="exploded-war" name="dsweb-t1:war exploded">
@@ -90,17 +75,6 @@
             <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.1.1" />
             <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.1.1" />
             <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.1.1" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/enterprise/cdi-api/1.0-SP4/cdi-api-1.0-SP4.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/spec/javax/interceptor/jboss-interceptors-api_1.1_spec/1.0.0.Beta1/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/inject/inject-api/1.0.0-PRD/inject-api-1.0.0-PRD.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/faces/jsf-api/2.1/jsf-api-2.1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/org/primefaces/primefaces/3.4.2/primefaces-3.4.2.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.1.1/jackson-databind-2.1.1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.1.1/jackson-annotations-2.1.1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.1.1/jackson-core-2.1.1.jar" />
-            <element id="file-copy" path="$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1.jar" />
           </element>
         </element>
       </root>

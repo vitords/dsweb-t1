@@ -1,16 +1,15 @@
 package br.ufsm.inf.bolicho.beans;
 
-import br.ufsm.inf.bolicho.beans.Product;
 import br.ufsm.inf.bolicho.dao.DAOException;
 import br.ufsm.inf.bolicho.dao.ProductDAO;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.inject.Named;
-import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,13 +19,14 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 
-@Named
-@RequestScoped
+@ManagedBean(name = "productController")
+@ViewScoped
 public class ProductController implements Serializable {
 
     private Product currentProduct;
     private Product lastProduct;
     private ProductDAO productDAO;
+    private List<Product> productList;
 
     public ProductController() {
         currentProduct = new Product();
@@ -58,8 +58,13 @@ public class ProductController implements Serializable {
         this.productDAO = productDAO;
     }
 
+    public List<Product> getProductList() {
+        return productDAO.retrieveAll();
+    }
+
     public void save(ActionEvent actionEvent) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produto " + currentProduct.getName() + " cadastrado!"));
+        // Pra usar os atributos enviados pelo commandButton: actionEvent.getComponent().getAttributes().get("nomedoatributo");
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produto " + actionEvent.getComponent().getAttributes().get("name") + " cadastrado!"));
         try {
             productDAO.insert(currentProduct);
             lastProduct = currentProduct;

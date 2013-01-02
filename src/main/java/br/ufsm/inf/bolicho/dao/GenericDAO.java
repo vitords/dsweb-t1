@@ -1,6 +1,6 @@
 package br.ufsm.inf.bolicho.dao;
 
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +10,7 @@ import java.util.List;
  * Time: 02:47
  * To change this template use File | Settings | File Templates.
  */
-public interface GenericDAO<T> {
+public interface GenericDAO<T> extends Serializable {
 
     public void insert(T object) throws DAOException;
     public T retrieve(T object) throws DAOException;

@@ -42,12 +42,19 @@
                     <p:inputText id="weight" value="#{productController.currentProduct.weight}" required="true" label="Peso"/>
                     <p:message for="weight"/>
 
-                    <h:outputLabel for="quantity" value="Em estoque:" />
-                    <p:inputText id="quantity" value="#{productController.currentProduct.quantityInStock}" required="true" label="Em estoque"/>
-                    <p:message for="quantity"/>
+                    <h:outputLabel for="quantityInStock" value="Em estoque:" />
+                    <p:inputText id="quantityInStock" value="#{productController.currentProduct.quantityInStock}" required="true" label="Em estoque"/>
+                    <p:message for="quantityInStock"/>
                 </h:panelGrid>
 
-                <p:commandButton value="Cadastrar" update="tab1,:form2:display" id="ajax" actionListener="#{productController.save}" />
+                <p:commandButton value="Cadastrar" update="tab1,:form2:display,:productList:dataTable" id="ajax" actionListener="#{productController.save}">
+                    <!-- Se quiser passsar atributos pro método definido em 'actionListener', é assim: -->
+                    <f:attribute name="name" value="#{productController.currentProduct.name}" />
+                    <f:attribute name="description" value="#{productController.currentProduct.description}" />
+                    <f:attribute name="price" value="#{productController.currentProduct.price}" />
+                    <f:attribute name="weight" value="#{productController.currentProduct.weight}" />
+                    <f:attribute name="quantityInStock" value="#{productController.currentProduct.quantityInStock}" />
+                </p:commandButton>
             </p:tab>
 
             <p:tab id="tab2" title="Atualizar Produto">
@@ -91,6 +98,47 @@
 
             </h:panelGrid>
         </p:panel>
+    </h:form>
+
+    <h:form id="productList">
+
+        <p:dataTable id="dataTable" var="prod" value="#{productController.productList}"
+                     paginator="true" rows="10"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+            <f:facet name="header">
+                Produtos
+            </f:facet>
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Nome" />
+                </f:facet>
+                <h:outputText value="#{prod.name}" />
+            </p:column>
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Preço" />
+                </f:facet>
+                <h:outputText value="#{prod.price}" />
+            </p:column>
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Peso" />
+                </f:facet>
+                <h:outputText value="#{prod.price}" />
+            </p:column>
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Em estoque" />
+                </f:facet>
+                <h:outputText value="#{prod.quantityInStock}" />
+            </p:column>
+        </p:dataTable>
+
     </h:form>
 
 </h:body>

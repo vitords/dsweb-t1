@@ -1,12 +1,7 @@
 package br.ufsm.inf.bolicho.beans;
 
-import br.ufsm.inf.bolicho.dao.DAOException;
-import br.ufsm.inf.bolicho.dao.ProductDAO;
-
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+
 import javax.inject.Named;
 import java.io.Serializable;
 

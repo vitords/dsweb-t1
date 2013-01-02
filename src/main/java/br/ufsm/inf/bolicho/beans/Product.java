@@ -1,8 +1,5 @@
 package br.ufsm.inf.bolicho.beans;
 
-import javax.enterprise.context.SessionScoped;
-
-import javax.inject.Named;
 import java.io.Serializable;
 
 /**
@@ -13,8 +10,6 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 
-@Named
-@SessionScoped
 public class Product implements Serializable {
 
     private int id;

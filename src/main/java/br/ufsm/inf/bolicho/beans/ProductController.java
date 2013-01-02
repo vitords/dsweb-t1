@@ -3,11 +3,13 @@ package br.ufsm.inf.bolicho.beans;
 import br.ufsm.inf.bolicho.dao.DAOException;
 import br.ufsm.inf.bolicho.dao.ProductDAO;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,7 +28,6 @@ public class ProductController implements Serializable {
     private Product currentProduct;
     private Product lastProduct;
     private ProductDAO productDAO;
-    private List<Product> productList;
 
     public ProductController() {
         currentProduct = new Product();
@@ -48,14 +49,6 @@ public class ProductController implements Serializable {
 
     public void setLastProduct(Product product) {
         this.lastProduct = product;
-    }
-
-    public ProductDAO getProductDAO() {
-        return productDAO;
-    }
-
-    public void setProductDAO(ProductDAO productDAO) {
-        this.productDAO = productDAO;
     }
 
     public List<Product> getProductList() {

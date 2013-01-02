@@ -3,8 +3,6 @@ package br.ufsm.inf.bolicho.dao;
 import br.ufsm.inf.bolicho.PojoMapper;
 import br.ufsm.inf.bolicho.beans.Product;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,8 +16,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 
-@Named
-@SessionScoped
 public class ProductDAO implements GenericDAO<Product> {
 
     private File jsonData;

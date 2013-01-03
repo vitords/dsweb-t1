@@ -47,7 +47,7 @@
                     <p:message for="quantityInStock"/>
                 </h:panelGrid>
 
-                <p:commandButton value="Cadastrar" update="tab1,:form2:display,:productList:dataTable" id="ajax" actionListener="#{productController.save}">
+                <p:commandButton value="Cadastrar" update="tab1,:form2:display,:productList:dataTable" id="ajax" actionListener="#{productController.addProduct}">
                     <!-- Se quiser passsar atributos pro método definido em 'actionListener', é assim: -->
                     <f:attribute name="name" value="#{productController.currentProduct.name}" />
                     <f:attribute name="description" value="#{productController.currentProduct.description}" />

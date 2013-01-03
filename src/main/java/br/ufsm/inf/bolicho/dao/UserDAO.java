@@ -1,7 +1,14 @@
 package br.ufsm.inf.bolicho.dao;
 
+import br.ufsm.inf.bolicho.PojoMapper;
 import br.ufsm.inf.bolicho.beans.User;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -14,23 +21,124 @@ import java.util.List;
 
 public class UserDAO implements GenericDAO<User> {
 
+    private File jsonData;
+    private List<User> users;
+    private boolean initialized;
+
+    public UserDAO() {
+        jsonData = new File("C:\\users.json"); //TODO: Salvar onde?
+        users = new ArrayList<User>();
+        initialized = false;
+
+        if(!jsonData.exists()) {
+            try {
+                jsonData.createNewFile();
+                initialized = true;
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+    }
+
+    private void initialize() {
+        try {
+            FileReader fileReader = new FileReader(jsonData);
+            UserDAO tmp = (UserDAO) PojoMapper.fromJson(fileReader, UserDAO.class);
+            users.addAll(tmp.getUsers());
+            initialized = true;
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+    }
+
+    public File getJsonData() {
+        return jsonData;
+    }
+
+    public void setJsonData(File jsonData) {
+        this.jsonData = jsonData;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public boolean isInitialized() {
+        return initialized;
+    }
+
+    public void setInitialized(boolean initialized) {
+        this.initialized = initialized;
+    }
+
+    public int generateId() {
+        return -1; //TODO: Implementar generateId()
+    }
+
     public void insert(User user) throws DAOException {
-        //To change body of implemented methods use File | Settings | File Templates.
+        if(!initialized) {
+            initialize();
+        }
+        user.setId(generateId());
+        users.add(user);
+        try {
+            FileWriter fw = new FileWriter(jsonData);
+            PojoMapper.toJson(this, fw, true);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     public User retrieve(User user) throws DAOException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        if(!initialized) {
+            initialize();
+        }
+
+        for (User u : users) {
+            if (u.getId() == user.getId()) {
+                return u;
+            }
+        }
+        return null;
     }
 
     public List<User> retrieveAll() throws DAOException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        if(!initialized) {
+            initialize();
+        }
+
+        return users;
     }
 
     public void update(User user) throws DAOException {
-        //To change body of implemented methods use File | Settings | File Templates.
+        if(!initialized) {
+            initialize();
+        }
+
+        for (User u : users) {
+            if (u.getId() == user.getId()) {
+                u.setFirstName(user.getFirstName());
+                u.setLastName(user.getLastName());
+                u.setEmail(user.getEmail());
+                u.setPassword(user.getPassword());
+                u.setBillingAddress(user.getBillingAddress());
+                u.setDeliveryAddress(user.getDeliveryAddress());
+                u.setCpf(user.getCpf());
+            }
+        }
     }
 
     public void delete(User user) throws DAOException {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Iterator iterator = users.iterator();
+        while(iterator.hasNext()) {
+            User u = (User) iterator.next();
+            if (u.getId() == user.getId()) {
+                iterator.remove();
+            }
+        }
     }
 }

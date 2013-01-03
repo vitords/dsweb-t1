@@ -3,13 +3,11 @@ package br.ufsm.inf.bolicho.beans;
 import br.ufsm.inf.bolicho.dao.DAOException;
 import br.ufsm.inf.bolicho.dao.ProductDAO;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
@@ -51,19 +49,35 @@ public class ProductController implements Serializable {
         this.lastProduct = product;
     }
 
-    public List<Product> getProductList() {
-        return productDAO.retrieveAll();
-    }
+    public void addProduct(ActionEvent actionEvent) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                "Produto "
+                        + actionEvent.getComponent().getAttributes().get("name")
+                        + " cadastrado!")
+        );
 
-    public void save(ActionEvent actionEvent) {
-        // Pra usar os atributos enviados pelo commandButton: actionEvent.getComponent().getAttributes().get("nomedoatributo");
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produto " + actionEvent.getComponent().getAttributes().get("name") + " cadastrado!"));
         try {
             productDAO.insert(currentProduct);
             lastProduct = currentProduct;
             currentProduct = new Product();
         } catch (DAOException e) {
-
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+    }
+
+    public void removeProduct(ActionEvent actionEvent) {
+        // TODO: Implementar
+    }
+
+    public void updateProduct(ActionEvent actionEvent) {
+        // TODO: Implementar
+    }
+
+    public List<Product> searchProduct(ActionEvent actionEvent) {
+        return null; // TODO: Implementar
+    }
+
+    public List<Product> getProductList() {
+        return productDAO.retrieveAll();
     }
 }

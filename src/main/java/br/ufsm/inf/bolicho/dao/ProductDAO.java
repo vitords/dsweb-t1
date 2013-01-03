@@ -23,12 +23,12 @@ public class ProductDAO implements GenericDAO<Product> {
     private boolean initialized;
 
     public ProductDAO() {
-        jsonData = new File("C:\\data.json"); //TODO: Salvar onde?
+        jsonData = new File("C:\\products.json"); //TODO: Salvar onde?
         products = new ArrayList<Product>();
         initialized = false;
         //System.out.println("Entrou no construtor. Initialized: " + initialized + " Object: " + this);
         if(!jsonData.exists()) {
-            System.out.println("jsonData.exists = false. Initialized: " + initialized + " Object: " + this);
+            //System.out.println("jsonData.exists = false. Initialized: " + initialized + " Object: " + this);
             try {
                 jsonData.createNewFile();
                 initialized = true;
@@ -43,7 +43,7 @@ public class ProductDAO implements GenericDAO<Product> {
         //System.out.println("Entrou na initialize. Initialized: " + initialized + " Object: " + this);
         try {
             FileReader fileReader = new FileReader(jsonData);
-            ProductDAO tmp = (ProductDAO) PojoMapper.fromJson(fileReader,ProductDAO.class);
+            ProductDAO tmp = (ProductDAO) PojoMapper.fromJson(fileReader, ProductDAO.class);
             products.addAll(tmp.getProducts());
             initialized = true;
             //System.out.println("Terminou de inicializar. Initialized: " + initialized + " Object: " + this);
@@ -52,28 +52,12 @@ public class ProductDAO implements GenericDAO<Product> {
         }
     }
 
-    public File getJsonData() {
-        return jsonData;
-    }
-
-    public void setJsonData(File jsonData) {
-        this.jsonData = jsonData;
-    }
-
     public List<Product> getProducts() {
         return products;
     }
 
     public void setProducts(List<Product> products) {
         this.products = products;
-    }
-
-    public boolean isInitialized() {
-        return initialized;
-    }
-
-    public void setInitialized(boolean initialized) {
-        this.initialized = initialized;
     }
 
     public int generateId() {

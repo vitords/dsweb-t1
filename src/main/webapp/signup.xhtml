@@ -55,7 +55,7 @@
 
         </h:panelGrid>
 
-        <p:commandButton value="Cadastrar" update="form" id="ajax" actionListener="#{userController.save}">
+        <p:commandButton value="Cadastrar" update="form" id="ajax" actionListener="#{userController.addUser}">
             <!-- Se quiser passsar atributos pro método definido em 'actionListener', é assim: -->
             <f:attribute name="firstName" value="#{userController.currentUser.firstName}"/>
             <f:attribute name="lastName" value="#{userController.currentUser.lastName}"/>

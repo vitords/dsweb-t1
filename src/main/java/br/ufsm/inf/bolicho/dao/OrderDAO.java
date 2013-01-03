@@ -1,7 +1,7 @@
 package br.ufsm.inf.bolicho.dao;
 
 import br.ufsm.inf.bolicho.PojoMapper;
-import br.ufsm.inf.bolicho.beans.User;
+import br.ufsm.inf.bolicho.beans.Order;
 
 import java.io.File;
 import java.io.FileReader;
@@ -15,19 +15,18 @@ import java.util.List;
  * Created with IntelliJ IDEA.
  * User: Vitor
  * Date: 02/01/13
- * Time: 16:11
+ * Time: 23:33
  * To change this template use File | Settings | File Templates.
  */
-
-public class UserDAO implements GenericDAO<User> {
+public class OrderDAO implements GenericDAO<Order> {
 
     private File jsonData;
-    private List<User> users;
+    private List<Order> orders;
     private boolean initialized;
 
-    public UserDAO() {
-        jsonData = new File("C:\\users.json"); //TODO: Salvar onde?
-        users = new ArrayList<User>();
+    public OrderDAO() {
+        jsonData = new File("C:\\orders.json"); //TODO: Salvar onde?
+        orders = new ArrayList<Order>();
         initialized = false;
 
         if(!jsonData.exists()) {
@@ -43,32 +42,32 @@ public class UserDAO implements GenericDAO<User> {
     private void initialize() {
         try {
             FileReader fileReader = new FileReader(jsonData);
-            UserDAO tmp = (UserDAO) PojoMapper.fromJson(fileReader, UserDAO.class);
-            users.addAll(tmp.getUsers());
+            OrderDAO tmp = (OrderDAO) PojoMapper.fromJson(fileReader, OrderDAO.class);
+            orders.addAll(tmp.getOrders());
             initialized = true;
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public int generateId() {
         return -1; //TODO: Implementar generateId()
     }
 
-    public void insert(User user) throws DAOException {
+    public void insert(Order order) throws DAOException {
         if(!initialized) {
             initialize();
         }
-        user.setId(generateId());
-        users.add(user);
+        order.setId(generateId());
+        orders.add(order);
         try {
             FileWriter fw = new FileWriter(jsonData);
             PojoMapper.toJson(this, fw, true);
@@ -77,50 +76,45 @@ public class UserDAO implements GenericDAO<User> {
         }
     }
 
-    public User retrieve(User user) throws DAOException {
+    public Order retrieve(Order order) throws DAOException {
         if(!initialized) {
             initialize();
         }
 
-        for (User u : users) {
-            if (u.getId() == user.getId()) {
-                return u;
+        for (Order o : orders) {
+            if (o.getId() == order.getId()) {
+                return o;
             }
         }
         return null;
     }
 
-    public List<User> retrieveAll() throws DAOException {
+    public List<Order> retrieveAll() throws DAOException {
         if(!initialized) {
             initialize();
         }
 
-        return users;
+        return orders;
     }
 
-    public void update(User user) throws DAOException {
+    public void update(Order order) throws DAOException {
         if(!initialized) {
             initialize();
         }
 
-        for (User u : users) {
-            if (u.getId() == user.getId()) {
-                u.setFirstName(user.getFirstName());
-                u.setLastName(user.getLastName());
-                u.setEmail(user.getEmail());
-                u.setPassword(user.getPassword());
-                u.setBillingAddress(user.getBillingAddress());
-                u.setDeliveryAddress(user.getDeliveryAddress());
-                u.setCpf(user.getCpf());
+        for (Order o : orders) {
+            if (o.getId() == order.getId()) {
+                o.setUser(order.getUser()); // Inútil? Order nunca vai mudar de usuário...
+                o.setProducts(order.getProducts());
             }
         }
     }
 
-    public void delete(User user) throws DAOException {
-        Iterator iterator = users.iterator();
+    public void delete(Order order) throws DAOException {
+        Iterator iterator = orders.iterator();
         while(iterator.hasNext()) {
-            User u = (User) iterator.next();
-            if (u.getId() == user.getId()) {
+            Order o = (Order) iterator.next();
+            if (o.getId() == order.getId()) {
                 iterator.remove();
             }
         }

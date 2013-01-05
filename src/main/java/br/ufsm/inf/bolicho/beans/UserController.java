@@ -28,6 +28,7 @@ public class UserController implements Serializable {
     public UserController() {
         currentUser = new User();
         userDAO = new UserDAO();
+        userDAO.initialize();
     }
 
     public User getCurrentUser() {

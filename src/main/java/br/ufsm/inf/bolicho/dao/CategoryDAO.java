@@ -39,7 +39,7 @@ public class CategoryDAO implements GenericDAO<Category> {
         }
     }
 
-    private void initialize() {
+    public void initialize() {
         try {
             FileReader fileReader = new FileReader(jsonData);
             CategoryDAO tmp = (CategoryDAO) PojoMapper.fromJson(fileReader, CategoryDAO.class);

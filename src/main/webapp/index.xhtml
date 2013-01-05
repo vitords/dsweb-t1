@@ -1,91 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xml:lang="en" lang="en">
-<h:head>
-    <title>Bolicho do Nene</title>
-</h:head>
-<h:body>
-    <h:form id="topForm">
-        <p:panel id="topPanel">
-            <h3>Sexa pem finto ao policho to Nene!</h3> <br/>
-            <h:commandLink action="admin"> <h:outputText value="Fai pra paxina to atemin"/> </h:commandLink> <br/>
-            <h:commandLink action="sign"> <h:outputText value="Fai pra paxina to signup"/> </h:commandLink> <br/>
-            <h:commandLink action="search"> <h:outputText value="Fai pra paxina te pusca"/> </h:commandLink>
-        </p:panel>
-    </h:form>
-    <h:form id="mainForm">
-        <p:panel id="buttonsPanel">
-            <h:panelGrid columns="2">
-                <h:form id="buttonList">
-                    <h:commandLink action="admin"> <h:outputText value="Fai pra paxina to atemin"/> </h:commandLink>
+    <!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:ui="http://java.sun.com/jsf/facelets"
+          xmlns:p="http://primefaces.org/ui"
+          xml:lang="en" lang="en">
+    <h:head>
+        <style type="text/css">
+            body {
+                margin: 0;
+                width: 100%;
+            }
+
+            div{
+                position: relative;
+            }
+
+            .corpo {
+                float: left;
+                width:100%;
+                background: white;
+
+            }
+
+            .meio {
+                width: 80%;
+                float: left;
+                background: white;
+            }
+
+            .esquerda {
+                width: 20%;
+                float: left;
+                background: white;
+            }
+
+            #rodape {
+                width: 100%;
+                background: white;
+                float: left;
+            }
+
+            #cabecalho {
+                width: 100%;
+                background: white;
+                float: left;
+            }
+        </style>
+        <title>Bolicho do Nene</title>
+    </h:head>
+
+    <h:body>
+        <div id="cabecalho">
+            <h:form id="topForm">
+                <p:panel id="topPanel">
+                    <h3>Sexa pem finto ao policho to Nene!</h3> <br/>
+                </p:panel>
+            </h:form>
+        </div>
+
+        <div class="corpo">
+            <div class="esquerda">
+                <h:form id="buttonForm">
+                    <h:commandLink action="admin"> <h:outputText value="atemin"/> </h:commandLink> <br/>
+                    <p:button outcome="admin" value="Botão Atémin"></p:button>         <br/>
+                    <h:commandLink action="signup"> <h:outputText value="SE INSCREVE MANO"/> </h:commandLink> <br/>
+                    <h:commandLink action="search"> <h:outputText value="pusca"/> </h:commandLink>
                 </h:form>
+            </div>
+            <div class="meio">
+                <h:outputLabel for="name" value="Nome:" />
+                <p:inputText id="name" value="#{productController.currentProduct.name}"/> <h:commandButton value="Buscar Produto" update=":dataTable" id="searchButton" />
+                <p:message for="name" />
 
-                <h:form id="PICA">
 
-                    <h:outputLabel value="NON TA FUNFANDO"/>
+                <h:outputText value="#{productController.currentProduct.name}"/>
 
-                    <h:outputLabel for="name" value="Nome:" />
-                    <p:inputText id="name" value="#{productController.currentProduct.name}"/>
-                    <p:message for="name" />
+                <p:dataTable id="dataTable" var="prod" value="#{productController.productList}"
+                             paginator="true" rows="10"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+                    <f:facet name="header">
+                        Produtos
+                    </f:facet>
 
-                    <p:commandButton value="Buscar" update="dataTable" id="searchButton" actionListener="#{productController.searchProduct}">
-                        <f:attribute name="name" value="#{productController.currentProduct.name}" />
-                    </p:commandButton>
-
-                    <h:outputText value="Buscando por: #{productController.currentProduct.name}"/>
-
-                    <p:dataTable id="dataTable" var="prod" value="#{productController.searchResults}"
-                                 paginator="true" rows="10"
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15">
+                    <p:column>
                         <f:facet name="header">
-                            Produtos
+                            <h:outputText value="Nome" />
                         </f:facet>
+                        <h:outputText value="#{prod.name}" />
+                    </p:column>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nome" />
-                            </f:facet>
-                            <h:outputText value="#{prod.name}" />
-                        </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Preço" />
+                        </f:facet>
+                        <h:outputText value="#{prod.price}" />
+                    </p:column>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Preço" />
-                            </f:facet>
-                            <h:outputText value="#{prod.price}" />
-                        </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Peso" />
+                        </f:facet>
+                        <h:outputText value="#{prod.weight}" />
+                    </p:column>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Peso" />
-                            </f:facet>
-                            <h:outputText value="#{prod.weight}" />
-                        </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Em estoque" />
+                        </f:facet>
+                        <h:outputText value="#{prod.quantityInStock}" />
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </div>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Em estoque" />
-                            </f:facet>
-                            <h:outputText value="#{prod.quantityInStock}" />
-                        </p:column>
-                    </p:dataTable>
-
-                </h:form>
-            </h:panelGrid>
-        </p:panel>
-    </h:form>
-    <h:form id="footerForm">
-        <p:panel id="footPanel">
-            <h3>Encher linguiça ftw!</h3>
-        </p:panel>
-    </h:form>
-</h:body>
-</html>
+        <div id="rodape">
+            <h:form id="footerForm">
+                <p:panel id="footPanel">
+                    <h3>Encher linguiça ftw!</h3>
+                </p:panel>
+            </h:form>
+        </div>
+    </h:body>
+    </html>

@@ -26,11 +26,13 @@ public class ProductController implements Serializable {
 
     private Product currentProduct;
     private Product lastProduct;
+    private List<Product> searchResults;
     private ProductDAO productDAO;
 
     public ProductController() {
         currentProduct = new Product();
         lastProduct = null;
+        searchResults = new ArrayList<Product>();
         productDAO = new ProductDAO();
         productDAO.initialize();
     }
@@ -49,6 +51,14 @@ public class ProductController implements Serializable {
 
     public void setLastProduct(Product product) {
         this.lastProduct = product;
+    }
+
+    public List<Product> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(List<Product> searchResults) {
+        this.searchResults = searchResults;
     }
 
     public void addProduct(ActionEvent actionEvent) {
@@ -75,19 +85,17 @@ public class ProductController implements Serializable {
         // TODO: Implementar
     }
 
-    public List<Product> searchProduct(ActionEvent actionEvent) {
-        return null;
-    }
-
-    public List<Product> getSearchProduct() {
+    public void searchProduct(ActionEvent actionEvent) {
         List<Product> aux = getProductList();
         List<Product> list = new ArrayList<Product>();
         list.clear();
 
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Buscando por " + actionEvent.getComponent().getAttributes().get("name")));
+
         try {
             for(int i = 0 ; i < aux.size() ; i++)
             {
-                if(aux.get(i).getName().startsWith(currentProduct.getName()))
+                if(aux.get(i).getName().startsWith((String) FacesContext.getCurrentInstance().getAttributes().get("name")))
                 {
                     list.add(aux.get(i));
                 }
@@ -95,10 +103,11 @@ public class ProductController implements Serializable {
         }  catch (Exception e) {
             list =  getProductList();
         }
-        return list;
+        searchResults = list;
     }
 
     public List<Product> getProductList() {
         return productDAO.retrieveAll();
     }
+
 }

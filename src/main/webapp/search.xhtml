@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Buscar produto</title>
+</h:head>
+<h:body>
+
+    <h:form id="messagesForm">
+        <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+    </h:form>
+
+    <h:form id="form">
+        <p:panel header="Buscar produto">
+            <h:panelGrid id="grid" columns="3">
+
+                <h:outputLabel for="name" value="Nome:" />
+                <p:inputText id="name" value="#{productController.currentProduct.name}" required="true" label="Nome">
+                    <f:validateLength minimum="3"/>
+                </p:inputText>
+                <p:message for="name"/>
+
+            </h:panelGrid>
+
+            <p:commandButton value="Buscar" update="form" id="ajax" actionListener="#{productController.searchProduct}">
+                <!-- Se quiser passsar atributos pro método definido em 'actionListener', é assim: -->
+                <f:attribute name="name" value="#{productController.currentProduct.name}"/>
+            </p:commandButton>
+
+        </p:panel>
+
+        <p:panel header="Resultados">
+            <p:dataTable var="prod" value="#{productController.searchResults}">
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{prod.name}" />
+                </p:column>
+
+                <p:column headerText="Preço">
+                    <h:outputText value="#{prod.price}" />
+                </p:column>
+
+            </p:dataTable>
+        </p:panel>
+
+    </h:form>
+
+</h:body>
+</html>

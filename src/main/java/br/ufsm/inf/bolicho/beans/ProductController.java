@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,7 +76,26 @@ public class ProductController implements Serializable {
     }
 
     public List<Product> searchProduct(ActionEvent actionEvent) {
-        return null; // TODO: Implementar
+        return null;
+    }
+
+    public List<Product> getSearchProduct() {
+        List<Product> aux = getProductList();
+        List<Product> list = new ArrayList<Product>();
+        list.clear();
+
+        try {
+            for(int i = 0 ; i < aux.size() ; i++)
+            {
+                if(aux.get(i).getName().startsWith(currentProduct.getName()))
+                {
+                    list.add(aux.get(i));
+                }
+            }
+        }  catch (Exception e) {
+            list =  getProductList();
+        }
+        return list;
     }
 
     public List<Product> getProductList() {

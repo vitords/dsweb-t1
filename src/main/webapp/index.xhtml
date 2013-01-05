@@ -12,11 +12,73 @@
     <title>Bolicho do Nene</title>
 </h:head>
 <h:body>
-    <h3>Sexa pem finto ao policho to Nene!</h3>
+    <h:form id="topForm">
+        <p:panel id="topPanel">
+            <h3>Sexa pem finto ao policho to Nene!</h3> <br/>
+            <h:commandLink action="admin"> <h:outputText value="Fai pra paxina to atemin"/> </h:commandLink>
+            <h:commandLink action="sign"> <h:outputText value="Fai pra paxina to signup"/> </h:commandLink>
+        </p:panel>
+    </h:form>
     <h:form id="mainForm">
-        <p:panel id="optionsPanel">
-            <h:commandLink action="admin"> <h:outputText value="Fai pra paxina to atemin"/> </h:commandLink> <br/>
-            <h:commandLink action="signup"> <h:outputText value="Fai pra paxina te rexistrá ussuáreo"/> </h:commandLink>
+        <p:panel id="buttonsPanel">
+            <h:panelGrid columns="2">
+                <h:form id="buttonList">
+                    <h:commandLink action="admin"> <h:outputText value="Fai pra paxina to atemin"/> </h:commandLink>
+                </h:form>
+
+                <h:form id="PICA">
+                    <h:outputLabel for="name" value="Nome:" />
+                    <p:inputText id="name" value="#{productController.currentProduct.name}"/>
+                    <p:message for="name" />
+
+                    <h:commandButton value="Buscar" update=":PICA:dataTable" id="searchButton" />
+
+                     <h:outputText value="#{productController.currentProduct.name}"/>
+
+                    <p:dataTable id="dataTable" var="prod" value="#{productController.searchProduct}"
+                                 paginator="true" rows="10"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <f:facet name="header">
+                            Produtos
+                        </f:facet>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText value="#{prod.name}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Preço" />
+                            </f:facet>
+                            <h:outputText value="#{prod.price}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Peso" />
+                            </f:facet>
+                            <h:outputText value="#{prod.weight}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Em estoque" />
+                            </f:facet>
+                            <h:outputText value="#{prod.quantityInStock}" />
+                        </p:column>
+                    </p:dataTable>
+
+                </h:form>
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+    <h:form id="footerForm">
+        <p:panel id="footPanel">
+            <h3>Encher linguiça ftw!</h3>
         </p:panel>
     </h:form>
 </h:body>

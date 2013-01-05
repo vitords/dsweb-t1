@@ -91,11 +91,10 @@ public class ProductController implements Serializable {
         list.clear();
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Buscando por " + actionEvent.getComponent().getAttributes().get("name")));
-
         try {
             for(int i = 0 ; i < aux.size() ; i++)
             {
-                if(aux.get(i).getName().startsWith((String) FacesContext.getCurrentInstance().getAttributes().get("name")))
+                if(aux.get(i).getName().startsWith(currentProduct.getName()))
                 {
                     list.add(aux.get(i));
                 }

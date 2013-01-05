@@ -31,6 +31,7 @@ public class ProductController implements Serializable {
         currentProduct = new Product();
         lastProduct = null;
         productDAO = new ProductDAO();
+        productDAO.initialize();
     }
 
     public Product getCurrentProduct() {

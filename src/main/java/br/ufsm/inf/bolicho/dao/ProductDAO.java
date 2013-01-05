@@ -39,7 +39,7 @@ public class ProductDAO implements GenericDAO<Product> {
         }
     }
 
-    private void initialize() {
+    public void initialize() {
         //System.out.println("Entrou na initialize. Initialized: " + initialized + " Object: " + this);
         try {
             FileReader fileReader = new FileReader(jsonData);

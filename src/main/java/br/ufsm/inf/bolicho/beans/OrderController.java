@@ -29,6 +29,7 @@ public class OrderController implements Serializable {
     public OrderController() {
         currentOrder = new Order();
         orderDAO = new OrderDAO();
+        orderDAO.initialize();
     }
 
     public void addOrder(ActionEvent actionEvent) {

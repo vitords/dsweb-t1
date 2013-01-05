@@ -29,6 +29,7 @@ public class CategoryController implements Serializable {
     public CategoryController() {
         currentCategory = new Category();
         categoryDAO = new CategoryDAO();
+        categoryDAO.initialize();
     }
 
     public void addCategory(ActionEvent actionEvent) {

@@ -39,7 +39,7 @@ public class OrderDAO implements GenericDAO<Order> {
         }
     }
 
-    private void initialize() {
+    public void initialize() {
         try {
             FileReader fileReader = new FileReader(jsonData);
             OrderDAO tmp = (OrderDAO) PojoMapper.fromJson(fileReader, OrderDAO.class);

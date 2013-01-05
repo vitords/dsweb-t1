@@ -40,7 +40,7 @@ public class UserDAO implements GenericDAO<User> {
         }
     }
 
-    private void initialize() {
+    public void initialize() {
         try {
             FileReader fileReader = new FileReader(jsonData);
             UserDAO tmp = (UserDAO) PojoMapper.fromJson(fileReader, UserDAO.class);

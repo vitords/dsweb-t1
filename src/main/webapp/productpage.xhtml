@@ -13,6 +13,11 @@
 </h:head>
 <h:body>
 
+    <ui:composition template="templateLayout.xhtml">
+    <ui:define name="tituloJanela"> Bolicho do Nene - Contato</ui:define>
+
+    <ui:define name="layoutConteudo">
+
     <h:form id="messagesForm">
         <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
     </h:form>
@@ -38,6 +43,9 @@
 
 
     </h:form>
+
+    </ui:define>
+    </ui:composition>
 
 </h:body>
 </html>

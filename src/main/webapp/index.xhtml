@@ -22,20 +22,21 @@
             .corpo {
                 float: left;
                 width:100%;
-                background: white;
+                background: #dc143c;
 
             }
 
             .meio {
-                width: 85%;
+                width: 90%;
                 float: left;
                 background: #90ee90;
             }
 
             .esquerda {
-                width: 15%;
+                width: 10%;
                 float: left;
-                background: white;
+                background: #dc143c;
+                text-align: center;
             }
 
             #barraLogin{
@@ -82,10 +83,10 @@
         <div class="corpo">
             <div class="esquerda">
                 <h:form id="buttonForm">
-                    <h:commandLink action="admin"> <h:outputText value="atemin"/> </h:commandLink> <br/>
-                    <p:button outcome="admin" value="Botão Atémin"></p:button>         <br/>
-                    <h:commandLink action="signup"> <h:outputText value="SE INSCREVE MANO"/> </h:commandLink> <br/>
-                    <h:commandLink action="search"> <h:outputText value="pusca"/> </h:commandLink>
+                    <h:commandLink action="search"> <h:outputText value="Busca"/> </h:commandLink> <br/>
+                    <h:commandLink action="contato"> <h:outputText value="Contato"/> </h:commandLink> <br/>
+                    <h:commandLink action="admin"> <h:outputText value="Administração"/> </h:commandLink>
+
                 </h:form>
             </div>
             <div class="meio">
@@ -103,6 +104,10 @@
 
                             <p:column headerText="Preço">
                                 <h:outputText value="#{prod.price}"/>
+                            </p:column>
+
+                            <p:column headerText="Em Estoque">
+                                <h:outputText value="#{prod.quantityInStock}" />
                             </p:column>
 
                         </p:dataTable>

@@ -23,7 +23,7 @@ public class ProductDAO implements GenericDAO<Product> {
     private boolean initialized;
 
     public ProductDAO() {
-        jsonData = new File("C:\\products.json"); //TODO: Salvar onde?
+        jsonData = new File("C:\\json\\products.json"); //TODO: Salvar onde?
         products = new ArrayList<Product>();
         initialized = false;
         //System.out.println("Entrou no construtor. Initialized: " + initialized + " Object: " + this);
@@ -50,7 +50,7 @@ public class ProductDAO implements GenericDAO<Product> {
             //System.out.println("Terminou de inicializar. Initialized: " + initialized + " Object: " + this);
         } catch (Exception e) {
             //e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            System.out.println(e.getMessage());
+            //System.out.println("Erro no Initialize: " + e.getMessage());
         }
     }
 

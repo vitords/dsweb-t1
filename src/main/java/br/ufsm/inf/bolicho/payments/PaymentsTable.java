@@ -2,6 +2,11 @@ package br.ufsm.inf.bolicho.payments;
 
 import br.ufsm.inf.bolicho.beans.Product;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +18,10 @@ import java.util.List;
  * Time: 18:05
  * To change this template use File | Settings | File Templates.
  */
-public class PaymentsTable {
+
+@ManagedBean(name = "paymentsTable")
+@RequestScoped
+public class PaymentsTable implements Serializable {
     public static final double MIN_INTEREST = 1.03;
     public static final double MONTHLY_INTEREST = 1.005; //this will be applied over base interest
     public static final int MIN_PAYMENTS_FOR_INTEREST = 6;

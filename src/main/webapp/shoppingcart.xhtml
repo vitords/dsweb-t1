@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Meu Carrinho</title>
+</h:head>
+<h:body>
+
+    <h:form id="messagesForm">
+        <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+    </h:form>
+
+    <h:form id="form">
+        <p:panel header="Meu Carrinho">
+
+            <p:dataTable id="products" var="prod" value="#{orderController.currentOrder.products}" paginator="false"
+                         selection="#{orderController.currentOrder.selectedProducts}">
+
+                <f:facet name="header">
+                    Produtos
+                </f:facet>
+
+                <p:column selectionMode="multiple" style="width:18px" />
+
+                <p:column headerText="Nome">
+                    #{prod.name}
+                </p:column>
+
+                <p:column headerText="Preço">
+                    #{prod.price}
+                </p:column>
+
+                <p:column headerText="Quantidade" >
+                    #{prod.quantityOrdered}
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton id="removeProductsButton" value="Remover produtos selecionados" icon="ui-icon-close"
+                                     update=":form:products" actionListener="orderController.currentOrder.removeSelected" />
+                </f:facet>
+            </p:dataTable>
+
+        </p:panel>
+
+        <p:panel header="Dados do Usuário">
+
+        </p:panel>
+
+        <p:panel header="Dados de Cobrança">
+
+        </p:panel>
+
+        <p:panel>
+            <p:commandButton id="placeOrder" value="Finalizar pedido" icon="ui-icon-check" actionListener="orderController.addOrder" />
+        </p:panel>
+
+
+    </h:form>
+
+</h:body>
+</html>

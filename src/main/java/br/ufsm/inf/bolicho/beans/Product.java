@@ -18,6 +18,7 @@ public class Product implements Serializable {
     private double price;
     private double weight;
     private int quantityInStock;
+    private int quantityOrdered;
 
     public int getId() {
         return id;
@@ -67,4 +68,11 @@ public class Product implements Serializable {
         this.quantityInStock = quantityInStock;
     }
 
+    public int getQuantityOrdered() {
+        return quantityOrdered;
+    }
+
+    public void setQuantityOrdered(int quantityOrdered) {
+        this.quantityOrdered = quantityOrdered;
+    }
 }

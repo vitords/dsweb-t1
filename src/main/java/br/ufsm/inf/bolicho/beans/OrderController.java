@@ -3,11 +3,11 @@ package br.ufsm.inf.bolicho.beans;
 import br.ufsm.inf.bolicho.dao.DAOException;
 import br.ufsm.inf.bolicho.dao.OrderDAO;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,8 +19,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 
-@Named
-@SessionScoped  // Não tenho certeza se funciona bem com SessionScoped, mas faz sentido, não? :D
+@ManagedBean(name = "orderController")
+@SessionScoped
 public class OrderController implements Serializable {
 
     private Order currentOrder;
@@ -30,6 +30,14 @@ public class OrderController implements Serializable {
         currentOrder = new Order();
         orderDAO = new OrderDAO();
         orderDAO.initialize();
+    }
+
+    public Order getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
     }
 
     public void addOrder(ActionEvent actionEvent) {

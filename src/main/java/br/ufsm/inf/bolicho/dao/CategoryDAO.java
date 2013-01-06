@@ -43,6 +43,7 @@ public class CategoryDAO implements GenericDAO<Category> {
         try {
             FileReader fileReader = new FileReader(jsonData);
             CategoryDAO tmp = (CategoryDAO) PojoMapper.fromJson(fileReader, CategoryDAO.class);
+            categories.clear();
             categories.addAll(tmp.getCategories());
             initialized = true;
         } catch (IOException e) {
@@ -59,7 +60,7 @@ public class CategoryDAO implements GenericDAO<Category> {
     }
 
     public int generateId() {
-        return -1; //TODO: Implementar generateId()
+        return categories.size();
     }
 
     public void insert(Category category) throws DAOException {

@@ -43,6 +43,7 @@ public class OrderDAO implements GenericDAO<Order> {
         try {
             FileReader fileReader = new FileReader(jsonData);
             OrderDAO tmp = (OrderDAO) PojoMapper.fromJson(fileReader, OrderDAO.class);
+            orders.clear();
             orders.addAll(tmp.getOrders());
             initialized = true;
         } catch (IOException e) {
@@ -59,7 +60,7 @@ public class OrderDAO implements GenericDAO<Order> {
     }
 
     public int generateId() {
-        return -1; //TODO: Implementar generateId()
+        return orders.size();
     }
 
     public void insert(Order order) throws DAOException {

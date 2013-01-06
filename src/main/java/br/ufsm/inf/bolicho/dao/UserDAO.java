@@ -44,6 +44,7 @@ public class UserDAO implements GenericDAO<User> {
         try {
             FileReader fileReader = new FileReader(jsonData);
             UserDAO tmp = (UserDAO) PojoMapper.fromJson(fileReader, UserDAO.class);
+            users.clear();
             users.addAll(tmp.getUsers());
             initialized = true;
         } catch (IOException e) {
@@ -60,7 +61,7 @@ public class UserDAO implements GenericDAO<User> {
     }
 
     public int generateId() {
-        return -1; //TODO: Implementar generateId()
+        return users.size();
     }
 
     public void insert(User user) throws DAOException {

@@ -44,11 +44,13 @@ public class ProductDAO implements GenericDAO<Product> {
         try {
             FileReader fileReader = new FileReader(jsonData);
             ProductDAO tmp = (ProductDAO) PojoMapper.fromJson(fileReader, ProductDAO.class);
+            products.clear();
             products.addAll(tmp.getProducts());
             initialized = true;
             //System.out.println("Terminou de inicializar. Initialized: " + initialized + " Object: " + this);
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (Exception e) {
+            //e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            System.out.println(e.getMessage());
         }
     }
 
@@ -61,7 +63,7 @@ public class ProductDAO implements GenericDAO<Product> {
     }
 
     public int generateId() {
-        return -1; //TODO: Implementar generateId()
+        return products.size();
     }
 
     public void insert(Product product) throws DAOException {

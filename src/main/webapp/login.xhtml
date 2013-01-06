@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<body>
+<h:form id="loginForm">
+    <h:outputLabel value="Login:" />
+    <p:inputText id="loginInput" value="#{productController.currentProduct.name}"/>
+    <h:outputLabel value="Senha:" />
+    <p:inputText id="senhaInput" value="#{productController.currentProduct.name}"/>
+    <h:commandButton value="Entrar" id="loginButton" />
+    <h:commandLink action="signup"> <h:outputText value="Novo no site? Cadastre-se clicando aqui"/> </h:commandLink>
+</h:form>
+</body>
+</html>

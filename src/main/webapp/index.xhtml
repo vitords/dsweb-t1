@@ -8,119 +8,34 @@
           xmlns:ui="http://java.sun.com/jsf/facelets"
           xmlns:p="http://primefaces.org/ui"
           xml:lang="en" lang="en">
-    <h:head>
-        <style type="text/css">
-            body {
-                margin: 0;
-                width: 100%;
-            }
-
-            div{
-                position: relative;
-            }
-
-            .corpo {
-                float: left;
-                width:100%;
-                background: #dc143c;
-
-            }
-
-            .meio {
-                width: 90%;
-                float: left;
-                background: #90ee90;
-            }
-
-            .esquerda {
-                width: 10%;
-                float: left;
-                background: #dc143c;
-                text-align: center;
-            }
-
-            #barraLogin{
-                width: 100%;
-                background: #dc143c;
-                float: left;
-            }
-
-            #rodape {
-                width: 100%;
-                background: white;
-                float: left;
-            }
-
-            #cabecalho {
-                width: 100%;
-                background: white;
-                float: left;
-                text-align: center;
-            }
-        </style>
-        <title>Bolicho do Nene</title>
-    </h:head>
-
     <h:body>
-        <div id ="barraLogin">
-            <h:form id="loginForm">
-                <h:outputLabel for="name" value="Login:" />
-                <p:inputText id="loginInput" value="#{productController.currentProduct.name}"/>
-                <h:outputLabel for="name" value="Senha:" />
-                <p:inputText id="senhaInput" value="#{productController.currentProduct.name}"/>
-                <h:commandButton value="Entrar" update=":dataTable" id="loginButton" />
-                <h:commandLink action="signup"> <h:outputText value="Novo no site? Cadastre-se aqui"/> </h:commandLink> <br/>
+        <ui:composition template="templateLayout.xhtml">
+        <ui:define name="tituloJanela"> Bolicho do Nene </ui:define>
+
+        <ui:define name="layoutConteudo">
+            <h:form id="form">
+                <p:commandButton value="Buscar Produto" update="form" id="ajax" actionListener="#{productController.searchProduct}">
+                    <f:attribute name="name" value="#{productController.currentProduct.name}"/>
+                </p:commandButton>
+                <p:inputText id="name" value="#{productController.currentProduct.name}" required="false" label="Nome"></p:inputText>
+
+                <p:dataTable var="prod" value="#{productController.searchResults}">
+
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{prod.name}" />
+                    </p:column>
+
+                    <p:column headerText="Preço">
+                        <h:outputText value="#{prod.price}"/>
+                    </p:column>
+
+                    <p:column headerText="Em Estoque">
+                        <h:outputText value="#{prod.quantityInStock}" />
+                    </p:column>
+                </p:dataTable>
+
             </h:form>
-        </div>
-        <div id="cabecalho">
-            <h:form id="topForm">
-                <!--<p:panel id="topPanel">-->
-                    <p:graphicImage align="center" id="cabecalhoImg" value="/images/cabecalho.png" />
-                <!--</p:panel>-->
-            </h:form>
-        </div>
-
-        <div class="corpo">
-            <div class="esquerda">
-                <h:form id="buttonForm">
-                    <h:commandLink action="search"> <h:outputText value="Busca"/> </h:commandLink> <br/>
-                    <h:commandLink action="contato"> <h:outputText value="Contato"/> </h:commandLink> <br/>
-                    <h:commandLink action="admin"> <h:outputText value="Administração"/> </h:commandLink>
-
-                </h:form>
-            </div>
-            <div class="meio">
-                <h:form id="form">
-                        <p:commandButton value="Buscar Produto" update="form" id="ajax" actionListener="#{productController.searchProduct}">
-                            <f:attribute name="name" value="#{productController.currentProduct.name}"/>
-                        </p:commandButton>
-                        <p:inputText id="name" value="#{productController.currentProduct.name}" required="false" label="Nome"></p:inputText>
-
-                        <p:dataTable var="prod" value="#{productController.searchResults}">
-
-                            <p:column headerText="Nome">
-                                <h:outputText value="#{prod.name}" />
-                            </p:column>
-
-                            <p:column headerText="Preço">
-                                <h:outputText value="#{prod.price}"/>
-                            </p:column>
-
-                            <p:column headerText="Em Estoque">
-                                <h:outputText value="#{prod.quantityInStock}" />
-                            </p:column>
-
-                        </p:dataTable>
-                </h:form>
-            </div>
-        </div>
-
-        <div id="rodape">
-            <h:form id="footerForm">
-                <p:panel id="footPanel">
-                    <h3>Encher linguiça ftw!</h3>
-                </p:panel>
-            </h:form>
-        </div>
+        </ui:define>
+        </ui:composition>
     </h:body>
     </html>

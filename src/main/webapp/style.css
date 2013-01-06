@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    width: 100%;
+}
+
+div{
+    position: relative;
+}
+
+.corpo {
+    float: left;
+    width:100%;
+    background: #dc143c;
+
+}
+
+.meio {
+    width: 90%;
+    float: left;
+    background: #90ee90;
+}
+
+.esquerda {
+    width: 10%;
+    float: left;
+    background: #dc143c;
+    text-align: center;
+}
+
+#barraLogin{
+    width: 100%;
+    background: #dc143c;
+    float: left;
+}
+
+#rodape {
+    width: 100%;
+    background: white;
+    float: left;
+}
+
+#cabecalho {
+    width: 100%;
+    background: white;
+    float: left;
+    text-align: center;
+}

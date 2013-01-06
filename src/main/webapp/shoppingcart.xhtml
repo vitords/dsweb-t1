@@ -21,7 +21,7 @@
         <p:panel header="Meu Carrinho">
 
             <p:dataTable id="products" var="prod" value="#{orderController.currentOrder.products}" paginator="false"
-                         selection="#{orderController.currentOrder.selectedProducts}">
+                         selection="#{orderController.currentOrder.selectedProducts}" rowKey="#{prod.id}">
 
                 <f:facet name="header">
                     Produtos

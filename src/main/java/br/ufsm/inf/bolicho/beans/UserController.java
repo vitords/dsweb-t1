@@ -5,7 +5,7 @@ import br.ufsm.inf.bolicho.dao.UserDAO;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
@@ -19,7 +19,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @ManagedBean(name = "userController")
-@ViewScoped
+@SessionScoped
 public class UserController implements Serializable {
 
     private User currentUser;

@@ -26,7 +26,7 @@ public class CategoryDAO implements GenericDAO<Category> {
     private boolean initialized;
 
     public CategoryDAO() {
-        jsonData = new File("C:\\categories.json"); //TODO: Salvar onde?
+        jsonData = new File(System.getProperty("jboss.server.data.dir"), "categories.json");
         categories = new ArrayList<Category>();
         initialized = false;
 

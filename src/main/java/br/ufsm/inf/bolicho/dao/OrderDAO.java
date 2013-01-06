@@ -26,7 +26,7 @@ public class OrderDAO implements GenericDAO<Order> {
     private boolean initialized;
 
     public OrderDAO() {
-        jsonData = new File("C:\\orders.json"); //TODO: Salvar onde?
+        jsonData = new File(System.getProperty("jboss.server.data.dir"), "orders.json");
         orders = new ArrayList<Order>();
         initialized = false;
 

@@ -24,7 +24,7 @@ public class ProductDAO implements GenericDAO<Product> {
     private boolean initialized;
 
     public ProductDAO() {
-        jsonData = new File("C:\\json\\products.json"); //TODO: Salvar onde?
+        jsonData = new File(System.getProperty("jboss.server.data.dir"), "products.json");
         products = new ArrayList<Product>();
         initialized = false;
         if(!jsonData.exists()) {

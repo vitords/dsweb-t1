@@ -26,7 +26,7 @@ public class UserDAO implements GenericDAO<User> {
     private boolean initialized;
 
     public UserDAO() {
-        jsonData = new File("C:\\users.json"); //TODO: Salvar onde?
+        jsonData = new File(System.getProperty("jboss.server.data.dir"), "users.json");
         users = new ArrayList<User>();
         initialized = false;
 

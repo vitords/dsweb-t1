@@ -2,6 +2,7 @@ package br.ufsm.inf.bolicho.dao;
 
 import br.ufsm.inf.bolicho.PojoMapper;
 import br.ufsm.inf.bolicho.beans.Product;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -26,13 +27,10 @@ public class ProductDAO implements GenericDAO<Product> {
         jsonData = new File("C:\\json\\products.json"); //TODO: Salvar onde?
         products = new ArrayList<Product>();
         initialized = false;
-        //System.out.println("Entrou no construtor. Initialized: " + initialized + " Object: " + this);
         if(!jsonData.exists()) {
-            //System.out.println("jsonData.exists = false. Initialized: " + initialized + " Object: " + this);
             try {
                 jsonData.createNewFile();
                 initialized = true;
-                //System.out.println("Criou novo arquivo. Initialized: " + initialized + " Object: " + this);
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
@@ -40,17 +38,16 @@ public class ProductDAO implements GenericDAO<Product> {
     }
 
     public void initialize() {
-        //System.out.println("Entrou na initialize. Initialized: " + initialized + " Object: " + this);
         try {
             FileReader fileReader = new FileReader(jsonData);
             ProductDAO tmp = (ProductDAO) PojoMapper.fromJson(fileReader, ProductDAO.class);
             products.clear();
             products.addAll(tmp.getProducts());
             initialized = true;
-            //System.out.println("Terminou de inicializar. Initialized: " + initialized + " Object: " + this);
+        } catch (JsonMappingException e) {
+            // Não é erro :D
         } catch (Exception e) {
-            //e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            //System.out.println("Erro no Initialize: " + e.getMessage());
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }
 
@@ -67,12 +64,9 @@ public class ProductDAO implements GenericDAO<Product> {
     }
 
     public void insert(Product product) throws DAOException {
-        //System.out.println("Entrou na insert. Initialized: " + initialized + " Object: " + this);
         if(!initialized) {
-            //System.out.println("Testou initialized e deu false. Initialized: " + initialized + " Object: " + this);
             initialize();
         }
-        //System.out.println("Passou do teste. Initialized: " + initialized + " Object: " + this);
         product.setId(generateId());
         products.add(product);
         try {

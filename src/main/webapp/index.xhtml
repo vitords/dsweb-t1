@@ -27,15 +27,21 @@
             }
 
             .meio {
-                width: 80%;
+                width: 85%;
+                float: left;
+                background: #90ee90;
+            }
+
+            .esquerda {
+                width: 15%;
                 float: left;
                 background: white;
             }
 
-            .esquerda {
-                width: 20%;
+            #barraLogin{
+                width: 100%;
+                background: #dc143c;
                 float: left;
-                background: white;
             }
 
             #rodape {
@@ -48,17 +54,28 @@
                 width: 100%;
                 background: white;
                 float: left;
+                text-align: center;
             }
         </style>
         <title>Bolicho do Nene</title>
     </h:head>
 
     <h:body>
+        <div id ="barraLogin">
+            <h:form id="loginForm">
+                <h:outputLabel for="name" value="Login:" />
+                <p:inputText id="loginInput" value="#{productController.currentProduct.name}"/>
+                <h:outputLabel for="name" value="Senha:" />
+                <p:inputText id="senhaInput" value="#{productController.currentProduct.name}"/>
+                <h:commandButton value="Entrar" update=":dataTable" id="loginButton" />
+                <h:commandLink action="signup"> <h:outputText value="Novo no site? Cadastre-se aqui"/> </h:commandLink> <br/>
+            </h:form>
+        </div>
         <div id="cabecalho">
             <h:form id="topForm">
-                <p:panel id="topPanel">
-                    <h3>Sexa pem finto ao policho to Nene!</h3> <br/>
-                </p:panel>
+                <!--<p:panel id="topPanel">-->
+                    <p:graphicImage align="center" id="cabecalhoImg" value="/images/cabecalho.png" />
+                <!--</p:panel>-->
             </h:form>
         </div>
 
@@ -72,49 +89,24 @@
                 </h:form>
             </div>
             <div class="meio">
-                <h:outputLabel for="name" value="Nome:" />
-                <p:inputText id="name" value="#{productController.currentProduct.name}"/> <h:commandButton value="Buscar Produto" update=":dataTable" id="searchButton" />
-                <p:message for="name" />
+                <h:form id="form">
+                        <p:commandButton value="Buscar Produto" update="form" id="ajax" actionListener="#{productController.searchProduct}">
+                            <f:attribute name="name" value="#{productController.currentProduct.name}"/>
+                        </p:commandButton>
+                        <p:inputText id="name" value="#{productController.currentProduct.name}" required="false" label="Nome"></p:inputText>
 
+                        <p:dataTable var="prod" value="#{productController.searchResults}">
 
-                <h:outputText value="#{productController.currentProduct.name}"/>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{prod.name}" />
+                            </p:column>
 
-                <p:dataTable id="dataTable" var="prod" value="#{productController.productList}"
-                             paginator="true" rows="10"
-                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15">
-                    <f:facet name="header">
-                        Produtos
-                    </f:facet>
+                            <p:column headerText="Preço">
+                                <h:outputText value="#{prod.price}"/>
+                            </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome" />
-                        </f:facet>
-                        <h:outputText value="#{prod.name}" />
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Preço" />
-                        </f:facet>
-                        <h:outputText value="#{prod.price}" />
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Peso" />
-                        </f:facet>
-                        <h:outputText value="#{prod.weight}" />
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Em estoque" />
-                        </f:facet>
-                        <h:outputText value="#{prod.quantityInStock}" />
-                    </p:column>
-                </p:dataTable>
+                        </p:dataTable>
+                </h:form>
             </div>
         </div>
 

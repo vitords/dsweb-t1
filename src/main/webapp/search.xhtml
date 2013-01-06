@@ -8,11 +8,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
-<h:head>
-    <title>Buscar produto</title>
-</h:head>
 <h:body>
+    <ui:composition template="templateLayout.xhtml">
+    <ui:define name="tituloJanela"> Bolicho do Nene - Buscar um produto </ui:define>
 
+    <ui:define name="layoutConteudo">
     <h:form id="messagesForm">
         <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
     </h:form>
@@ -50,6 +50,7 @@
         </p:panel>
 
     </h:form>
-
+    </ui:define>
+    </ui:composition>
 </h:body>
 </html>

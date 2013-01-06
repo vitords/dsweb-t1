@@ -8,122 +8,34 @@
           xmlns:ui="http://java.sun.com/jsf/facelets"
           xmlns:p="http://primefaces.org/ui"
           xml:lang="en" lang="en">
-    <h:head>
-        <style type="text/css">
-            body {
-                margin: 0;
-                width: 100%;
-            }
-
-            div{
-                position: relative;
-            }
-
-            .corpo {
-                float: left;
-                width:100%;
-                background: white;
-
-            }
-
-            .meio {
-                width: 80%;
-                float: left;
-                background: white;
-            }
-
-            .esquerda {
-                width: 20%;
-                float: left;
-                background: white;
-            }
-
-            #rodape {
-                width: 100%;
-                background: white;
-                float: left;
-            }
-
-            #cabecalho {
-                width: 100%;
-                background: white;
-                float: left;
-            }
-        </style>
-        <title>Bolicho do Nene</title>
-    </h:head>
-
     <h:body>
-        <div id="cabecalho">
-            <h:form id="topForm">
-                <p:panel id="topPanel">
-                    <h3>Sexa pem finto ao policho to Nene!</h3> <br/>
-                </p:panel>
-            </h:form>
-        </div>
+        <ui:composition template="templateLayout.xhtml">
+        <ui:define name="tituloJanela"> Bolicho do Nene </ui:define>
 
-        <div class="corpo">
-            <div class="esquerda">
-                <h:form id="buttonForm">
-                    <h:commandLink action="admin"> <h:outputText value="atemin"/> </h:commandLink> <br/>
-                    <p:button outcome="admin" value="Botão Atémin"></p:button>         <br/>
-                    <h:commandLink action="signup"> <h:outputText value="SE INSCREVE MANO"/> </h:commandLink> <br/>
-                    <h:commandLink action="search"> <h:outputText value="pusca"/> </h:commandLink>
-                </h:form>
-            </div>
-            <div class="meio">
-                <h:outputLabel for="name" value="Nome:" />
-                <p:inputText id="name" value="#{productController.currentProduct.name}"/> <h:commandButton value="Buscar Produto" update=":dataTable" id="searchButton" />
-                <p:message for="name" />
+        <ui:define name="layoutConteudo">
+            <h:form id="form">
+                <p:commandButton value="Buscar Produto" update="form" id="ajax" actionListener="#{productController.searchProduct}">
+                    <f:attribute name="name" value="#{productController.currentProduct.name}"/>
+                </p:commandButton>
+                <p:inputText id="name" value="#{productController.currentProduct.name}" required="false" label="Nome"></p:inputText>
 
+                <p:dataTable var="prod" value="#{productController.searchResults}">
 
-                <h:outputText value="#{productController.currentProduct.name}"/>
-
-                <p:dataTable id="dataTable" var="prod" value="#{productController.productList}"
-                             paginator="true" rows="10"
-                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15">
-                    <f:facet name="header">
-                        Produtos
-                    </f:facet>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome" />
-                        </f:facet>
+                    <p:column headerText="Nome">
                         <h:outputText value="#{prod.name}" />
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Preço" />
-                        </f:facet>
-                        <h:outputText value="#{prod.price}" />
+                    <p:column headerText="Preço">
+                        <h:outputText value="#{prod.price}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Peso" />
-                        </f:facet>
-                        <h:outputText value="#{prod.weight}" />
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Em estoque" />
-                        </f:facet>
+                    <p:column headerText="Em Estoque">
                         <h:outputText value="#{prod.quantityInStock}" />
                     </p:column>
                 </p:dataTable>
-            </div>
-        </div>
 
-        <div id="rodape">
-            <h:form id="footerForm">
-                <p:panel id="footPanel">
-                    <h3>Encher linguiça ftw!</h3>
-                </p:panel>
             </h:form>
-        </div>
+        </ui:define>
+        </ui:composition>
     </h:body>
     </html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>
+        <ui:insert name="tituloJanela"/>
+    </title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+    <div id ="barraLogin">
+        <ui:include src="login.xhtml"/>
+    </div>
+    <div id="cabecalho">
+        <h:form id="topForm">
+            <p:graphicImage align="center" id="cabecalhoImg" value="/images/cabecalho.png" />
+        </h:form>
+    </div>
+
+    <div class="corpo">
+        <div class="esquerda">
+            <ui:include src="buttons.xhtml"/>
+        </div>
+        <div class="meio">
+            <ui:insert name="layoutConteudo"/>
+        </div>
+    </div>
+
+    <div id="rodape">
+        <ui:include src="rodape.xhtml"/>
+    </div>
+</h:body>
+</html>

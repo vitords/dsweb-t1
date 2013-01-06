@@ -2,6 +2,7 @@ package br.ufsm.inf.bolicho.dao;
 
 import br.ufsm.inf.bolicho.PojoMapper;
 import br.ufsm.inf.bolicho.beans.User;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import java.io.File;
 import java.io.FileReader;
@@ -34,6 +35,8 @@ public class UserDAO implements GenericDAO<User> {
             try {
                 jsonData.createNewFile();
                 initialized = true;
+            } catch (JsonMappingException e) {
+                // Não é erro :D
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }

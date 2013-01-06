@@ -13,6 +13,11 @@
 </h:head>
 <h:body>
 
+    <ui:composition template="templateLayout.xhtml">
+    <ui:define name="tituloJanela"> Bolicho do Nene - Contato</ui:define>
+
+    <ui:define name="layoutConteudo">
+
     <h:form id="messagesForm">
         <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
     </h:form>
@@ -21,7 +26,7 @@
         <p:panel header="Meu Carrinho">
 
             <p:dataTable id="products" var="prod" value="#{orderController.currentOrder.products}" paginator="false"
-                         selection="#{orderController.currentOrder.selectedProducts}">
+                         selection="#{orderController.currentOrder.selectedProducts}" rowKey="#{prod.id}">
 
                 <f:facet name="header">
                     Produtos
@@ -62,6 +67,9 @@
 
 
     </h:form>
+
+    </ui:define>
+    </ui:composition>
 
 </h:body>
 </html>

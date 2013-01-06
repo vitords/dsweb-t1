@@ -50,7 +50,6 @@ public class Order implements Serializable {
     }
 
     public void removeSelected() {
-        System.out.println("Chegou no remove");
         for (Product selectedProduct : selectedProducts) {
             this.products.remove(selectedProduct);
         }

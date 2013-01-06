@@ -5,7 +5,7 @@ import br.ufsm.inf.bolicho.dao.DAOException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 @ManagedBean(name = "categoryController")
-@ViewScoped
+@SessionScoped
 public class CategoryController implements Serializable {
 
     private Category currentCategory;

@@ -76,6 +76,9 @@ public class OrderController implements Serializable {
     public void addProduct(ActionEvent actionEvent) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produto adicionado ao carrinho."));
         ArrayList<Product> products = (ArrayList<Product>) currentOrder.getProducts();
+        if (products == null) {
+            products = new ArrayList<Product>();
+        }
         products.add((Product) actionEvent.getComponent().getAttributes().get("product"));
         //TODO: Testar se essa merda não é null
         currentOrder.setProducts(products);

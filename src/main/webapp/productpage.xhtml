@@ -36,7 +36,14 @@
             </p:commandButton>
         </p:panel>
 
-
+        <p:dataTable id="paymentsTable" var="payment" value="#{paymentsTable.getPaymentsTable(productController.currentProduct)}">
+            <p:column>
+                <f:facet name="header">
+                    Preço
+                </f:facet>
+                <h:outputText value="#{payment}" />
+            </p:column>
+        </p:dataTable>
     </h:form>
 
 </h:body>

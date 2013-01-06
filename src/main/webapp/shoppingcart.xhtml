@@ -17,7 +17,7 @@
         <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
     </h:form>
 
-    <h:form id="form">
+    <h:form id="shoppingForm">
         <p:panel header="Meu Carrinho">
 
             <p:dataTable id="products" var="prod" value="#{orderController.currentOrder.products}" paginator="false"
@@ -42,8 +42,7 @@
                 </p:column>
 
                 <f:facet name="footer">
-                    <p:commandButton id="removeProductsButton" value="Remover produtos selecionados" icon="ui-icon-close"
-                                     update=":form:products" actionListener="orderController.currentOrder.removeSelected" />
+                    <p:commandButton value="Remover produtos selecionados" icon="ui-icon-close" update="products" id="removeSelectedButton" actionListener="#{orderController.removeSelectedProducts}" />
                 </f:facet>
             </p:dataTable>
 
@@ -58,7 +57,7 @@
         </p:panel>
 
         <p:panel>
-            <p:commandButton id="placeOrder" value="Finalizar pedido" icon="ui-icon-check" actionListener="orderController.addOrder" />
+            <p:commandButton value="Finalizar pedido" icon="ui-icon-check" id="placeOrder" actionListener="#{orderController.addOrder}" />
         </p:panel>
 
 

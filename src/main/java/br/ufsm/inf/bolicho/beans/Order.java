@@ -1,8 +1,6 @@
 package br.ufsm.inf.bolicho.beans;
 
-import javax.faces.event.ActionEvent;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,8 +50,9 @@ public class Order implements Serializable {
     }
 
     public void removeSelected() {
-        for (int i = 0; i < selectedProducts.length; i++) {
-            this.products.remove(selectedProducts[i]);
+        System.out.println("Chegou no remove");
+        for (Product selectedProduct : selectedProducts) {
+            this.products.remove(selectedProduct);
         }
     }
 }

@@ -72,4 +72,9 @@ public class OrderController implements Serializable {
         return null;
     }
 
+    public void removeSelectedProducts(ActionEvent actionEvent) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produtos removidos do carrinho."));
+        currentOrder.removeSelected();
+    }
+
 }

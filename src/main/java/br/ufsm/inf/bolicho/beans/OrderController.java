@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -70,6 +71,14 @@ public class OrderController implements Serializable {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
         return null;
+    }
+
+    public void addProduct(ActionEvent actionEvent) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produto adicionado ao carrinho."));
+        ArrayList<Product> products = (ArrayList<Product>) currentOrder.getProducts();
+        products.add((Product) actionEvent.getComponent().getAttributes().get("product"));
+        //TODO: Testar se essa merda não é null
+        currentOrder.setProducts(products);
     }
 
     public void removeSelectedProducts(ActionEvent actionEvent) {

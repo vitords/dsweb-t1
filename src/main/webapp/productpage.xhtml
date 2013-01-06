@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Bolicho do Nene - #{productController.currentProduct.name}</title>
+</h:head>
+<h:body>
+
+    <h:form id="messagesForm">
+        <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+    </h:form>
+
+    <h:form id="shoppingForm">
+        <p:panel header="#{productController.currentProduct.name}">
+            <p:panelGrid columns="2">
+                <p:graphicImage id="productImg" value="/images/test.png" />
+                <h:outputText value="#{productController.currentProduct.description}" />
+            </p:panelGrid>
+        </p:panel>
+
+        <p:panel header="Dados do Produto">
+
+        </p:panel>
+
+
+        <p:panel>
+            <p:commandButton value="Adicionar ao carrinho" icon="ui-icon-check" id="addToCart" actionListener="#{orderController.addProduct}">
+                    <f:attribute name="product" value="#{productController.currentProduct}"/>
+            </p:commandButton>
+        </p:panel>
+
+
+    </h:form>
+
+</h:body>
+</html>

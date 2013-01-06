@@ -14,25 +14,26 @@
 
         <ui:define name="layoutConteudo">
             <h:form id="form">
-                <p:commandButton value="Buscar Produto" update="form" id="ajax" actionListener="#{productController.searchProduct}">
-                    <f:attribute name="name" value="#{productController.currentProduct.name}"/>
-                </p:commandButton>
-                <p:inputText id="name" value="#{productController.currentProduct.name}" required="false" label="Nome"></p:inputText>
 
-                <p:dataTable var="prod" value="#{productController.searchResults}">
+                <p:dataGrid var="prod" value="#{productController.productList}" columns="3"
+                            rows="12" paginator="true"
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="9,12,15">
 
-                    <p:column headerText="Nome">
-                        <h:outputText value="#{prod.name}" />
-                    </p:column>
+                    <p:panel header="#{prod.name}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <!--<p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>    -->
 
-                    <p:column headerText="Preço">
-                        <h:outputText value="#{prod.price}"/>
-                    </p:column>
+                            <h:outputText value="#{prod.price}" />
 
-                    <p:column headerText="Em Estoque">
-                        <h:outputText value="#{prod.quantityInStock}" />
-                    </p:column>
-                </p:dataTable>
+                            <p:commandLink title="Ver detalhes">
+                                <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                                <f:setPropertyActionListener value="#{prod}" target="#{productController.currentProduct}" />
+                            </p:commandLink>
+                        </h:panelGrid>
+                    </p:panel>
+
+                </p:dataGrid>
 
             </h:form>
         </ui:define>

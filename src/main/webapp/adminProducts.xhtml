@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Admin</title>
+</h:head>
+<h:body>
+    <ui:composition template="templateLayout.xhtml">
+        <ui:define name="tituloJanela"> Bolicho do Nene - Administração </ui:define>
+
+        <ui:define name="layoutConteudo">
+
+            <h:form id="linksForm">
+                <h:commandLink action="admin"> <h:outputText value="Administração"/> </h:commandLink> <h:outputText value="  "/>
+                <h:commandLink action="adminProducts"> <h:outputText value="Gerenciar Produtos"/> </h:commandLink> <h:outputText value="  "/>
+                <h:commandLink action="adminUsers"> <h:outputText value="Gerenciar Usuários"/> </h:commandLink> <h:outputText value="  "/>
+                <h:commandLink action="index"> <h:outputText value="Sair"/> </h:commandLink>
+            </h:form>
+
+            <!--
+        <h:form id="messagesForm">
+            <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+        </h:form>
+        -->
+            <h:form id="form1">
+                <p:dataTable id="dataTableProducts" var="prod" value="#{productController.productList}"
+                             selection="#{productController.selectedProducts}" rowKey="#{prod.id}"
+                             paginator="true" rows="10"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+
+                    <f:facet name="header">
+                        Produtos
+                    </f:facet>
+
+                    <p:column selectionMode="multiple" style="width:18px" />
+
+                    <p:column headerText="Nome">
+                        #{prod.name}
+                    </p:column>
+
+                    <p:column headerText="Preço">
+                        #{prod.price}
+                    </p:column>
+
+                    <p:column headerText="Quantidade" >
+                        #{prod.quantityOrdered}
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Atualizar" />
+                        </f:facet>
+                        <h:commandLink title="Ver detalhes" action="productpage">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{prod}" target="#{productController.currentProduct}" />
+                        </h:commandLink>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Remover produtos selecionados" icon="ui-icon-close"
+                                         update="dataTableProducts" id="removeSelectedButton"
+                                         actionListener="#{productController.removeSelectedProducts}" />
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+
+            <h:form id="form">
+                <p:panel id="display" header="Cadastrar Novo Produto" style="margin-top:10px;" cellpadding="10">
+                        <h:panelGrid id="grid" columns="3" style="margin-bottom:10px" cellpadding="10">
+
+                            <h:outputLabel for="name" value="Nome:" />
+                            <p:inputText id="name" value="#{productController.currentProduct.name}" required="true" label="Nome" >
+                                <f:validateLength minimum="3" />
+                            </p:inputText>
+                            <p:message for="name" />
+
+                            <h:outputLabel for="description" value="Descrição:" />
+                            <p:inputTextarea id="description" value="#{productController.currentProduct.description}" required="true" label="Descrição"/>
+                            <p:message for="description"  />
+
+                            <h:outputLabel for="price" value="Preço:" />
+                            <p:inputText id="price" value="#{productController.currentProduct.price}" required="true" label="Preço"/>
+                            <p:message for="price"/>
+
+                            <h:outputLabel for="weight" value="Peso:" />
+                            <p:inputText id="weight" value="#{productController.currentProduct.weight}" required="true" label="Peso"/>
+                            <p:message for="weight"/>
+
+                            <h:outputLabel for="quantityInStock" value="Em estoque:" />
+                            <p:inputText id="quantityInStock" value="#{productController.currentProduct.quantityInStock}" required="true" label="Em estoque"/>
+                            <p:message for="quantityInStock"/>
+                        </h:panelGrid>
+
+                        <p:commandButton value="Cadastrar" update="form,:form2:display,:form1:dataTableProducts" id="ajax" actionListener="#{productController.addProduct}">
+                            <!-- Se quiser passsar atributos pro método definido em 'actionListener', é assim: -->
+                            <f:attribute name="name" value="#{productController.currentProduct.name}" />
+                            <f:attribute name="description" value="#{productController.currentProduct.description}" />
+                            <f:attribute name="price" value="#{productController.currentProduct.price}" />
+                            <f:attribute name="weight" value="#{productController.currentProduct.weight}" />
+                            <f:attribute name="quantityInStock" value="#{productController.currentProduct.quantityInStock}" />
+                        </p:commandButton>
+                        <h:panelGrid/>
+                </p:panel>
+            </h:form>
+
+            <h:form id="form2">
+                <p:panel id="display" header="Produto Cadastrado" style="margin-top:10px;" cellpadding="10">
+                    <h:panelGrid columns="2">
+
+                        <h:outputText value="Referência: " />
+                        <h:outputText value="#{productController.lastProduct.id}" />
+
+                        <h:outputText value="Nome: " />
+                        <h:outputText value="#{productController.lastProduct.name}" />
+
+                        <h:outputText value="Descrição: " />
+                        <h:outputText value="#{productController.lastProduct.description}" />
+
+                        <h:outputText value="Preço: " />
+                        <h:outputText value="#{productController.lastProduct.price}" />
+
+                        <h:outputText value="Peso: " />
+                        <h:outputText value="#{productController.lastProduct.weight}" />
+
+                        <h:outputText value="Unidades em estoque: " />
+                        <h:outputText value="#{productController.lastProduct.quantityInStock}" />
+
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+
+
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

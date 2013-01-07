@@ -14,27 +14,26 @@
 
     <ui:define name="layoutConteudo">
 
-        <!--
-        <h:form id="messagesForm">
-            <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
-        </h:form>
-        -->
+    <h:form id="messagesForm">
+        <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+    </h:form>
 
     <h:form id="form">
         <p:panel header="Buscar produto">
-            <h:panelGrid id="grid" columns="3">
+            <h:panelGrid id="grid" columns="4">
 
                 <h:outputLabel for="name" value="Nome:" />
                 <p:inputText id="name" value="#{productController.currentProduct.name}" required="true" label="Nome">
                 </p:inputText>
                 <p:message for="name"/>
 
-            </h:panelGrid>
+
 
             <p:commandButton value="Buscar" update="form" id="ajax" actionListener="#{productController.searchProduct}">
-                <!-- Se quiser passsar atributos pro método definido em 'actionListener', é assim: -->
                 <f:attribute name="name" value="#{productController.currentProduct.name}"/>
             </p:commandButton>
+
+        </h:panelGrid>
 
         </p:panel>
 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Bolicho do Nene - #{productController.currentProduct.name}</title>
+</h:head>
+<h:body>
+
+    <ui:composition template="templateLayout.xhtml">
+        <ui:define name="tituloJanela"> Bolicho do Nene- Administração - Atualizar Usuário</ui:define>
+
+        <ui:define name="layoutConteudo">
+
+            <h:form id="messagesForm">
+                <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+            </h:form>
+
+            <h:form id="shoppingForm">
+                <p:panel header="Usuário: #{userController.currentUser.firstName} #{userController.currentUser.lastName}">
+                    <h:outputText value="Nome: " />
+                    <h:inputText id="firstNameUser" value="#{userController.currentUser.firstName}" required="true" />
+                    <p:watermark for="firstNameUser" value="#{userController.currentUser.firstName}" /> <br/>
+
+                            <h:outputText value="Sobrenome: " />
+                            <h:inputText id="lastNameUser" value="#{userController.currentUser.lastName}" required="true" />
+                            <p:watermark for="lastNameUser" value="#{userController.currentUser.lastName}" /> <br/>
+
+                            <h:outputText value="Email: " />
+                            <h:inputText id="emailUser" value="#{userController.currentUser.email}" required="true" />
+                            <p:watermark for="emailUser" value="#{userController.currentUser.email}" /> <br/>
+
+                            <h:outputText value="Endereço: " />
+                            <h:inputText id="billingAddressUser" value="#{userController.currentUser.billingAddress}" required="true" />
+                            <p:watermark for="billingAddressUser" value="#{userController.currentUser.billingAddress}" /> <br/>
+
+                            <h:outputText value="CPF: " />
+                            <h:inputText id="cpfUser" value="#{userController.currentUser.cpf}" required="true" />
+                            <p:watermark for="cpfUser" value="#{userController.currentUser.cpf}" /> <br/>
+
+                            <h:outputText value="Endereço de Entrega: " />
+                            <h:inputText id="deliveryAddressUser" value="#{userController.currentUser.deliveryAddress}" required="true" />
+                            <p:watermark for="deliveryAddressUser" value="#{userController.currentUser.deliveryAddress}" /> <br/>
+
+                            <h:outputText value="Senha: " />
+                            <h:inputText id="passwordUser" value="#{userController.currentUser.password}" required="true" />
+                            <p:watermark for="passwordUser" value="#{userController.currentUser.password}" />
+                </p:panel>
+
+                <p:panel>
+                    <p:commandButton value="Atualizar Usuário" icon="ui-icon-check" id="updateUser" ajax="false" action="adminUsers" actionListener="#{userController.updateUser}">
+                          <f:attribute name="user" value="#{userController.currentUser}"/>
+                    </p:commandButton>
+                </p:panel>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+</html>

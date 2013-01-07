@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Bolicho do Nene - #{productController.currentProduct.name}</title>
+</h:head>
+<h:body>
+
+    <ui:composition template="templateLayout.xhtml">
+        <ui:define name="tituloJanela"> Bolicho do Nene - Administração - Atualizar Produto</ui:define>
+
+        <ui:define name="layoutConteudo">
+
+            <h:form id="messagesForm">
+                <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+            </h:form>
+
+            <h:form id="shoppingForm">
+                <p:panel header="Dados do Produto: #{productController.currentProduct.name}">
+                    <p:panelGrid columns="2">
+                        <p:graphicImage id="productImg" value="/images/test.png" />
+                        <h:form id="productData">
+                            <h:outputText value="Nome: " />
+                            <h:inputText id="nameProduct" value="#{productController.currentProduct.name}" required="true" />
+                            <p:watermark for="nameProduct" value="#{productController.currentProduct.name}" /> <br/>
+
+                            <h:outputText value="Preço: " />
+                            <h:inputText id="priceProduct" value="#{productController.currentProduct.price}" required="true" />
+                            <p:watermark for="priceProduct" value="#{productController.currentProduct.price}" /> <br/>
+
+                            <h:outputText value="Quantidade em estoque: " />
+                            <h:inputText id="stockQuantProduct" value="#{productController.currentProduct.quantityInStock}" required="true" />
+                            <p:watermark for="stockQuantProduct" value="#{productController.currentProduct.quantityInStock}" /> <br/>
+
+                            <h:outputText value="Quantidade vendida: " />
+                            <h:inputText id="stockOrderedProduct" value="#{productController.currentProduct.quantityOrdered}" required="true" />
+                            <p:watermark for="stockOrderedProduct" value="#{productController.currentProduct.quantityOrdered}" /> <br/>
+
+                            <h:outputText value="Peso: " />
+                            <h:inputText id="weightProduct" value="#{productController.currentProduct.weight}" required="true" />
+                            <p:watermark for="weightProduct" value="#{productController.currentProduct.weight}" /> <br/>
+
+                            <h:outputText value="Descrição: " />
+                            <h:inputTextarea id="descriptionProduct" value="#{productController.currentProduct.description}" required="true" />
+                            <p:watermark for="descriptionProduct" value="#{productController.currentProduct.description}" /> <br/>
+
+                        </h:form>
+                    </p:panelGrid>
+                </p:panel>
+                <p:panel>
+                    <p:commandButton value="Atualizar Produto" icon="ui-icon-check" id="updateProduct" ajax="false" action="adminProducts" actionListener="#{productController.updateProduct}">
+                        <f:attribute name="product" value="#{productController.currentProduct}"/>
+                    </p:commandButton>
+                </p:panel>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+</html>

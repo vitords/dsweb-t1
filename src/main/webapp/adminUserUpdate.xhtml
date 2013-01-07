@@ -24,33 +24,37 @@
 
             <h:form id="shoppingForm">
                 <p:panel header="Usuário: #{userController.currentUser.firstName} #{userController.currentUser.lastName}">
-                    <h:outputText value="Nome: " />
-                    <h:inputText id="firstNameUser" value="#{userController.currentUser.firstName}" required="true" />
-                    <p:watermark for="firstNameUser" value="#{userController.currentUser.firstName}" /> <br/>
 
-                            <h:outputText value="Sobrenome: " />
-                            <h:inputText id="lastNameUser" value="#{userController.currentUser.lastName}" required="true" />
-                            <p:watermark for="lastNameUser" value="#{userController.currentUser.lastName}" /> <br/>
+                    <h:panelGrid columns="3">
 
-                            <h:outputText value="Email: " />
-                            <h:inputText id="emailUser" value="#{userController.currentUser.email}" required="true" />
-                            <p:watermark for="emailUser" value="#{userController.currentUser.email}" /> <br/>
+                        <h:outputLabel for="firstNameUser" value="Nome: " />
+                        <p:inputText id="firstNameUser" value="#{userController.currentUser.firstName}" required="true" />
+                        <p:watermark for="firstNameUser" value="#{userController.currentUser.firstName}" />
 
-                            <h:outputText value="Endereço: " />
-                            <h:inputText id="billingAddressUser" value="#{userController.currentUser.billingAddress}" required="true" />
-                            <p:watermark for="billingAddressUser" value="#{userController.currentUser.billingAddress}" /> <br/>
+                        <h:outputLabel for="lastNameUser" value="Sobrenome: " />
+                        <p:inputText id="lastNameUser" value="#{userController.currentUser.lastName}" required="true" />
+                        <p:watermark for="lastNameUser" value="#{userController.currentUser.lastName}" />
 
-                            <h:outputText value="CPF: " />
-                            <h:inputText id="cpfUser" value="#{userController.currentUser.cpf}" required="true" />
-                            <p:watermark for="cpfUser" value="#{userController.currentUser.cpf}" /> <br/>
+                        <h:outputLabel for="emailUser" value="Email: " />
+                        <p:inputText id="emailUser" value="#{userController.currentUser.email}" required="true" />
+                        <p:watermark for="emailUser" value="#{userController.currentUser.email}" />
 
-                            <h:outputText value="Endereço de Entrega: " />
-                            <h:inputText id="deliveryAddressUser" value="#{userController.currentUser.deliveryAddress}" required="true" />
-                            <p:watermark for="deliveryAddressUser" value="#{userController.currentUser.deliveryAddress}" /> <br/>
+                        <h:outputLabel for="billingAddressUser" value="Endereço: " />
+                        <p:inputText id="billingAddressUser" value="#{userController.currentUser.billingAddress}" required="true" />
+                        <p:watermark for="billingAddressUser" value="#{userController.currentUser.billingAddress}" />
 
-                            <h:outputText value="Senha: " />
-                            <h:inputText id="passwordUser" value="#{userController.currentUser.password}" required="true" />
-                            <p:watermark for="passwordUser" value="#{userController.currentUser.password}" />
+                        <h:outputLabel for="cpfUser" value="CPF: " />
+                        <p:inputText id="cpfUser" value="#{userController.currentUser.cpf}" required="true" />
+                        <p:watermark for="cpfUser" value="#{userController.currentUser.cpf}" />
+
+                        <h:outputLabel for="deliveryAddressUser" value="Endereço de Entrega: " />
+                        <p:inputText id="deliveryAddressUser" value="#{userController.currentUser.deliveryAddress}" required="true" />
+                        <p:watermark for="deliveryAddressUser" value="#{userController.currentUser.deliveryAddress}" />
+
+                        <h:outputLabel for="passwordUser" value="Senha: " />
+                        <p:inputText id="passwordUser" value="#{userController.currentUser.password}" required="true" />
+                        <p:watermark for="passwordUser" value="#{userController.currentUser.password}" />
+                    </h:panelGrid>
                 </p:panel>
 
                 <p:panel>

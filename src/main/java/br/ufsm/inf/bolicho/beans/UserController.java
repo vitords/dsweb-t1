@@ -64,7 +64,11 @@ public class UserController implements Serializable {
     }
 
     public void updateUser(ActionEvent actionEvent) {
-        // TODO: Implementar
+        try {
+            userDAO.update(currentUser);
+        } catch (DAOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     public List<User> searchUser(ActionEvent actionEvent) {

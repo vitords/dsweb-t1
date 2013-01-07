@@ -78,12 +78,8 @@ public class ProductController implements Serializable {
         }
     }
 
-    public void removeProduct(ActionEvent actionEvent) {
-        // TODO: Implementar
-    }
-
     public void updateProduct(ActionEvent actionEvent) {
-        // TODO: Implementar
+        productDAO.update(currentProduct);
     }
 
     public void searchProduct(ActionEvent actionEvent) {

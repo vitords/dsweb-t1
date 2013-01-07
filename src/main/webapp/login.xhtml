@@ -26,18 +26,18 @@
 
             <p:spacer width="3"/>
 
-            <p:commandButton value="Entrar" id="loginButton" actionListener="#{userController.login}" />
+            <p:commandButton value="Entrar" id="loginButton" actionListener="#{userController.login}" ajax="false"/>
 
             <p:spacer width="10"/>
 
-            <p:commandLink action="signup">
+            <p:commandLink action="signup" ajax="false">
                 <h:outputText value="Novo no site? Cadastre-se clicando aqui!"/>
             </p:commandLink>
 
-            <p:commandLink action="shoppingcart" style="float: right">
+            <p:commandLink action="shoppingcart" style="float: right" ajax="false">
                 <h:outputText value="Meu carrinho de compras"/>
             </p:commandLink>
-            <p:commandLink action="shoppingcart" styleClass="ui-icon ui-icon-cart" style="float: right"/>
+            <p:commandLink action="shoppingcart" styleClass="ui-icon ui-icon-cart" style="float: right" ajax="false"/>
 
         </p:panel>
     </h:form>

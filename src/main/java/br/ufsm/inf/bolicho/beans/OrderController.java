@@ -42,12 +42,8 @@ public class OrderController implements Serializable {
     }
 
     public void addOrder(ActionEvent actionEvent) {
-
         User user = (User) actionEvent.getComponent().getAttributes().get("user");
-        User emptyUser = new User();
-        if ( user.getFirstName().equals(emptyUser.getFirstName()) && user.getLastName().equals(emptyUser.getLastName()) ) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário não está logado!"));
-        } else {
+
             try {
                 currentOrder.setUser(user);
                 orderDAO.insert(currentOrder);
@@ -56,19 +52,18 @@ public class OrderController implements Serializable {
             } catch (DAOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
-        }
     }
 
     public void removeOrder(ActionEvent actionEvent) {
-        // TODO: Implementar
+        // TODO: É necessário implementar?
     }
 
     public void updateOrder(ActionEvent actionEvent) {
-        // TODO: Implementar
+        // TODO: É necessário implementar?
     }
 
     public List<Product> searchOrder(ActionEvent actionEvent) {
-        return null; // TODO: Implementar
+        return null; // TODO: Implementar para o T2
     }
 
     public List<Order> getOrderList() {
@@ -120,8 +115,6 @@ public class OrderController implements Serializable {
                 o.setProducts(updated);
             }
         }
-
-
     }
 
     private Product productAlreadyInCart(Product product, ArrayList<Product> products) {

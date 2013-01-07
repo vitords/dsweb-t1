@@ -112,6 +112,13 @@ public class OrderDAO implements GenericDAO<Order> {
                 o.setProducts(order.getProducts());
             }
         }
+
+        try {
+            FileWriter fw = new FileWriter(jsonData);
+            PojoMapper.toJson(this, fw, true);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     public void delete(Order order) throws DAOException {
@@ -121,6 +128,13 @@ public class OrderDAO implements GenericDAO<Order> {
             if (o.getId() == order.getId()) {
                 iterator.remove();
             }
+        }
+
+        try {
+            FileWriter fw = new FileWriter(jsonData);
+            PojoMapper.toJson(this, fw, true);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }
 }

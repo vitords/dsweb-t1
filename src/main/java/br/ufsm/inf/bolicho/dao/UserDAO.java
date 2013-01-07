@@ -118,6 +118,13 @@ public class UserDAO implements GenericDAO<User> {
                 u.setCpf(user.getCpf());
             }
         }
+
+        try {
+            FileWriter fw = new FileWriter(jsonData);
+            PojoMapper.toJson(this, fw, true);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     public void delete(User user) throws DAOException {
@@ -127,6 +134,13 @@ public class UserDAO implements GenericDAO<User> {
             if (u.getId() == user.getId()) {
                 iterator.remove();
             }
+        }
+
+        try {
+            FileWriter fw = new FileWriter(jsonData);
+            PojoMapper.toJson(this, fw, true);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }
 }

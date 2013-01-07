@@ -113,6 +113,13 @@ public class CategoryDAO implements GenericDAO<Category> {
                 c.setProductList(category.getProductList());
             }
         }
+
+        try {
+            FileWriter fw = new FileWriter(jsonData);
+            PojoMapper.toJson(this, fw, true);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     public void delete(Category category) throws DAOException {
@@ -122,6 +129,13 @@ public class CategoryDAO implements GenericDAO<Category> {
             if (c.getId() == category.getId()) {
                 iterator.remove();
             }
+        }
+
+        try {
+            FileWriter fw = new FileWriter(jsonData);
+            PojoMapper.toJson(this, fw, true);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }
 }

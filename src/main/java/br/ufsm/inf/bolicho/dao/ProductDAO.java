@@ -112,6 +112,13 @@ public class ProductDAO implements GenericDAO<Product> {
                 p.setQuantityInStock(product.getQuantityInStock());
             }
         }
+
+        try {
+            FileWriter fw = new FileWriter(jsonData);
+            PojoMapper.toJson(this, fw, true);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     public void delete(Product product) {
@@ -121,6 +128,13 @@ public class ProductDAO implements GenericDAO<Product> {
             if (p.getId() == product.getId()) {
                 iterator.remove();
             }
+        }
+
+        try {
+            FileWriter fw = new FileWriter(jsonData);
+            PojoMapper.toJson(this, fw, true);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }
 }

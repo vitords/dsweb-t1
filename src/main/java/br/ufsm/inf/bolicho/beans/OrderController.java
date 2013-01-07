@@ -79,8 +79,18 @@ public class OrderController implements Serializable {
         if (products == null) {
             products = new ArrayList<Product>();
         }
-        products.add((Product) actionEvent.getComponent().getAttributes().get("product"));
-        //TODO: Testar se essa merda não é null
+        Product product = (Product) actionEvent.getComponent().getAttributes().get("product");
+        if (product != null) {
+            Product inCart = productAlreadyInCart(product, products);
+            if (inCart != null) {
+                inCart.setQuantityOrdered(inCart.getQuantityOrdered() + 1);
+            } else {
+                product.setQuantityOrdered(1);
+                products.add(product);
+            }
+        } else {
+            //we should probably throw an exception, like "unexpected behaviour"
+        }
         currentOrder.setProducts(products);
     }
 
@@ -89,4 +99,11 @@ public class OrderController implements Serializable {
         currentOrder.removeSelected();
     }
 
+    private Product productAlreadyInCart(Product product, ArrayList<Product> products) {
+        for (Product p : products) {
+            if (p.getId() == product.getId())
+                return p;
+        }
+        return null;
+    }
 }

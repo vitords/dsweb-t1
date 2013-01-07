@@ -13,29 +13,29 @@
         <ui:define name="tituloJanela"> Bolicho do Nene </ui:define>
 
         <ui:define name="layoutConteudo">
-            <h:form id="form">
+        <h:form id="form">
 
-                <p:dataGrid var="prod" value="#{productController.productList}" columns="3"
-                            rows="12" paginator="true"
-                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                            rowsPerPageTemplate="9,12,15">
+            <p:dataGrid var="prod" value="#{productController.productList}" columns="3"
+                        rows="12" paginator="true"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="9,12,15">
 
-                    <p:panel header="#{prod.name}" style="text-align:center">
-                        <h:panelGrid columns="1" style="width:100%">
-                            <!--<p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>    -->
+                <p:panel header="#{prod.name}" style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <!--<p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>    -->
 
-                            <h:outputText value="R$#{prod.price}" />
-                            <!-- ajeitar -->
-                            <h:commandLink title="Ver detalhes" action="productpage">
-                                <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
-                                <f:setPropertyActionListener value="#{prod}" target="#{productController.currentProduct}" />
-                            </h:commandLink>
-                        </h:panelGrid>
-                    </p:panel>
+                        <h:outputText value="R$#{prod.price}" />
+                        <!-- ajeitar -->
+                        <h:commandLink title="Ver detalhes" action="productpage">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{prod}" target="#{productController.currentProduct}" />
+                        </h:commandLink>
+                    </h:panelGrid>
+                </p:panel>
 
-                </p:dataGrid>
+            </p:dataGrid>
 
-            </h:form>
+        </h:form>
         </ui:define>
         </ui:composition>
     </h:body>

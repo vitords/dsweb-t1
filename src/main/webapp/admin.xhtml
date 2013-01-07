@@ -18,100 +18,103 @@
         <ui:define name="layoutConteudo">
 
             <h:form id="linksForm">
-                <h:commandLink action="admin"> <h:outputText value="Administração"/> </h:commandLink> <h:outputText value="  "/>
-                <h:commandLink action="adminProducts"> <h:outputText value="Gerenciar Produtos"/> </h:commandLink> <h:outputText value="  "/>
-                <h:commandLink action="adminUsers"> <h:outputText value="Gerenciar Usuários"/> </h:commandLink> <h:outputText value="  "/>
+                <h:commandLink action="admin"> <h:outputText value="Administração"/> </h:commandLink> <h:outputText
+                    value="  "/>
+                <h:commandLink action="adminProducts"> <h:outputText value="Gerenciar Produtos"/> </h:commandLink>
+                <h:outputText value="  "/>
+                <h:commandLink action="adminUsers"> <h:outputText value="Gerenciar Usuários"/> </h:commandLink>
+                <h:outputText value="  "/>
                 <h:commandLink action="index"> <h:outputText value="Sair"/> </h:commandLink>
             </h:form>
-        <p:dataTable id="dataTableProduct" var="prod" value="#{productController.productList}"
-                     paginator="true" rows="10"
-                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="5,10,15">
-            <f:facet name="header">
-                Produtos
-            </f:facet>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="ID" />
-                        </f:facet>
-                        <h:outputText value="#{prod.id}" />
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome" />
-                        </f:facet>
-                        <h:outputText value="#{prod.name}" />
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Preço" />
-                        </f:facet>
-                        <h:outputText value="#{prod.price}" />
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Peso" />
-                        </f:facet>
-                        <h:outputText value="#{prod.weight}" />
-                    </p:column>
-
-            <p:column>
+            <p:dataTable id="dataTableProduct" var="prod" value="#{productController.productList}"
+                         paginator="true" rows="10"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
                 <f:facet name="header">
-                    <h:outputText value="Em estoque" />
+                    Produtos
                 </f:facet>
-                <h:outputText value="#{prod.quantityInStock}" />
-            </p:column>
-        </p:dataTable>
-        <br/>
-        <p:dataTable id="dataTableUser" var="user" value="#{userController.userList}"
-                     paginator="true" rows="10"
-                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="5,10,15">
-            <f:facet name="header">
-                Usuários
-            </f:facet>
 
-            <p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.id}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.name}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Preço"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.price}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Peso"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.weight}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Em estoque"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.quantityInStock}"/>
+                </p:column>
+            </p:dataTable>
+            <br/>
+            <p:dataTable id="dataTableUser" var="user" value="#{userController.userList}"
+                         paginator="true" rows="10"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
                 <f:facet name="header">
-                    <h:outputText value="ID" />
+                    Usuários
                 </f:facet>
-                <h:outputText value="#{user.id}" />
-            </p:column>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Nome" />
-                </f:facet>
-                <h:outputText value="#{user.firstName}" />
-            </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{user.id}"/>
+                </p:column>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Sobrenome" />
-                </f:facet>
-                <h:outputText value="#{user.lastName}" />
-            </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{user.firstName}"/>
+                </p:column>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Email" />
-                </f:facet>
-                <h:outputText value="#{user.email}" />
-            </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Sobrenome"/>
+                    </f:facet>
+                    <h:outputText value="#{user.lastName}"/>
+                </p:column>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Senha" />
-                </f:facet>
-                <h:outputText value="#{user.password}" />
-            </p:column>
-        </p:dataTable>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Email"/>
+                    </f:facet>
+                    <h:outputText value="#{user.email}"/>
+                </p:column>
 
-     </ui:define>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Senha"/>
+                    </f:facet>
+                    <h:outputText value="#{user.password}"/>
+                </p:column>
+            </p:dataTable>
+
+        </ui:define>
     </ui:composition>
 </h:body>
 </html>

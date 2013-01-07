@@ -38,7 +38,7 @@
                     #{prod.name}
                 </p:column>
 
-                <p:column headerText="Preço">
+                <p:column headerText="Preço unitário">
                     #{prod.price}
                 </p:column>
 
@@ -46,8 +46,13 @@
                     #{prod.quantityOrdered}
                 </p:column>
 
+                <p:column headerText="Preço total">
+                    #{prod.totalPrice}
+                </p:column>
+
                 <f:facet name="footer">
-                    <p:commandButton value="Remover produtos selecionados" icon="ui-icon-close" update="products" id="removeSelectedButton" actionListener="#{orderController.removeSelectedProducts}" />
+                    <p:commandButton value="Remover produtos selecionados" icon="ui-icon-close" update="products"
+                                     id="removeSelectedButton" actionListener="#{orderController.removeSelectedProducts}" />
                 </f:facet>
             </p:dataTable>
 

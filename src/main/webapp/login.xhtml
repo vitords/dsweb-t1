@@ -9,13 +9,15 @@
       xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
 <body>
-<h:form id="loginForm">
-    <h:outputLabel value="Login:" />
-    <p:inputText id="loginInput" value="user@email.com"/>
-    <h:outputLabel value="Senha:" />
-    <p:password  id="senhaInput"/>
-    <h:commandButton value="Entrar" id="loginButton" />
-    <h:commandLink action="signup"> <h:outputText value="Novo no site? Cadastre-se clicando aqui"/> </h:commandLink>
-</h:form>
+    <h:form id="loginForm">
+        <p:panel>
+            <p:outputLabel value="Login:" />
+            <p:inputText id="loginInput" value="user@email.com"/>
+            <p:outputLabel value="Senha:" />
+            <p:password  id="senhaInput"/>
+            <p:commandButton value="Entrar" id="loginButton" />
+            <p:commandLink action="signup"> <h:outputText value="Novo no site? Cadastre-se clicando aqui!"/> </p:commandLink>
+        </p:panel>
+    </h:form>
 </body>
 </html>

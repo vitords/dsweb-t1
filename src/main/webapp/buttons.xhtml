@@ -8,14 +8,39 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
-<body>
-<h:form id="buttonForm">
-    <p:commandLink action="index"> <h:outputText value="Home"/> </p:commandLink> <br/>
-    <h:commandLink action="search"> <h:outputText value="Busca"/> </h:commandLink> <br/>
-    <h:commandLink action="signup"> <h:outputText value="Cadastro"/> </h:commandLink> <br/>
-    <h:commandLink action="contato"> <h:outputText value="Contato"/> </h:commandLink> <br/>
-    <h:commandLink action="admin"> <h:outputText value="Administração"/> </h:commandLink> <br/>
-    <h:commandLink action="shoppingcart"> <h:outputText value="Carrinho de Mão"/> </h:commandLink> <br/>
-</h:form>
-</body>
+<h:body>
+    <h:form id="buttonForm">
+
+        <p:panel header="Menu">
+
+            <p:commandLink action="index">
+                <h:outputText value="Home"/>
+            </p:commandLink>
+            <br/>
+
+            <p:commandLink action="search">
+                <h:outputText value="Busca"/>
+            </p:commandLink>
+            <br/>
+
+            <p:commandLink action="signup">
+                <h:outputText value="Cadastro"/>
+            </p:commandLink>
+            <br/>
+
+            <p:commandLink action="contato">
+                <h:outputText value="Contato"/>
+            </p:commandLink>
+            <br/>
+
+            <p:commandLink action="admin">
+                <h:outputText value="Administração"/>
+            </p:commandLink> <br/>
+            <br/>
+
+        </p:panel>
+
+    </h:form>
+
+</h:body>
 </html>

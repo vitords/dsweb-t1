@@ -10,26 +10,26 @@ div{
 .corpo {
     float: left;
     width:100%;
-    background: #dc143c;
+   /* background: #dc143c;  */
 
 }
 
 .meio {
     width: 90%;
     float: left;
-    background: #90ee90;
+    /*background: #90ee90; */
 }
 
 .esquerda {
     width: 10%;
     float: left;
-    background: #dc143c;
+    /*background: #dc143c;*/
     text-align: center;
 }
 
 #barraLogin{
     width: 100%;
-    background: #dc143c;
+    /*background: #dc143c;*/
     float: left;
 }
 

@@ -28,6 +28,7 @@ public class ProductController implements Serializable {
     private Product lastProduct;
     private List<Product> searchResults;
     private ProductDAO productDAO;
+    private Product[] selectedProducts;
 
     public ProductController() {
         currentProduct = new Product();
@@ -109,4 +110,21 @@ public class ProductController implements Serializable {
         return productDAO.retrieveAll();
     }
 
+
+
+    public void setSelectedProducts(Product[] selectedProducts) {
+        this.selectedProducts = selectedProducts;
+    }
+
+    public Product[] getSelectedProducts() {
+        return selectedProducts;
+    }
+
+    public void removeSelectedProducts(ActionEvent actionEvent) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produtos removidos."));
+        for (Product selectedProduct : selectedProducts) {
+            productDAO.delete(selectedProduct);
+        }
+
+    }
 }

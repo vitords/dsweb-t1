@@ -16,9 +16,18 @@
     <ui:define name="tituloJanela"> Bolicho do Nene - Administração </ui:define>
 
     <ui:define name="layoutConteudo">
-    <h:form id="messagesForm">
-        <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
-    </h:form>
+
+            <h:form id="linksForm">
+                <h:commandLink action="admin"> <h:outputText value="Gerenciar Produtos"/> </h:commandLink> <h:outputText value="  "/>
+                <h:commandLink action="adminUsers"> <h:outputText value="Gerenciar Usuários"/> </h:commandLink> <h:outputText value="  "/>
+                <h:commandLink action="index"> <h:outputText value="Sair"/> </h:commandLink>
+            </h:form>
+
+            <!--
+        <h:form id="messagesForm">
+            <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+        </h:form>
+        -->
 
     <h:form id="form">
 
@@ -69,8 +78,33 @@
 
             <p:tab id="tab3" title="Remover Produto">
                 <h:panelGrid columns="2" cellpadding="10">
-                    <p:graphicImage id="tab3Img" value="/images/test.png" />
-                    <h:outputText value="Nothing to see here."/>
+                    <p:dataTable id="products" var="prod" value="#{productController.productList}"
+                                 selection="#{productController.selectedProducts}" rowKey="#{prod.id}">
+
+                        <f:facet name="header">
+                            Produtos
+                        </f:facet>
+
+                        <p:column selectionMode="multiple" style="width:18px" />
+
+                        <p:column headerText="Nome">
+                            #{prod.name}
+                        </p:column>
+
+                        <p:column headerText="Preço">
+                            #{prod.price}
+                        </p:column>
+
+                        <p:column headerText="Quantidade" >
+                            #{prod.quantityOrdered}
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Remover produtos selecionados" icon="ui-icon-close"
+                                             update="products" id="removeSelectedButton"
+                                             actionListener="#{productController.removeSelectedProducts}" />
+                        </f:facet>
+                    </p:dataTable>
                 </h:panelGrid>
             </p:tab>
 

@@ -16,19 +16,21 @@
 
             <p:spacer width="10"/>
 
-            <h:outputLabel for="loginInput" value="E-Mail:" />
-            <p:inputText id="loginInput" value="loginInput"/>
+            <h:outputLabel for="loginInput" value="E-mail:" />
+            <p:inputText id="loginInput" value="#{userController.currentUser.email}" />
 
             <p:spacer width="3"/>
 
             <h:outputLabel for="senhaInput" value="Senha:" />
-            <p:password  id="senhaInput" value="senhaInput"/>
+            <p:password  id="senhaInput" value="#{userController.currentUser.password}" />
 
             <p:spacer width="3"/>
 
-            <p:commandButton value="Entrar" id="loginButton"/>
+            <p:commandButton value="Entrar" id="loginButton" actionListener="#{userController.login}" />
 
             <p:spacer width="10"/>
+
+            <h:outputText value="Logged: #{userController.currentUser.email}" />
 
             <p:commandLink action="signup">
                 <h:outputText value="Novo no site? Cadastre-se clicando aqui!"/>

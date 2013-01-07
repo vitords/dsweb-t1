@@ -42,13 +42,20 @@ public class OrderController implements Serializable {
     }
 
     public void addOrder(ActionEvent actionEvent) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Pedido realizado!"));
 
-        try {
-            orderDAO.insert(currentOrder);
-            currentOrder = new Order();
-        } catch (DAOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        User user = (User) actionEvent.getComponent().getAttributes().get("user");
+        User emptyUser = new User();
+        if ( user.getFirstName().equals(emptyUser.getFirstName()) && user.getLastName().equals(emptyUser.getLastName()) ) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário não está logado!"));
+        } else {
+            try {
+                currentOrder.setUser(user);
+                orderDAO.insert(currentOrder);
+                currentOrder = new Order();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Pedido realizado."));
+            } catch (DAOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
         }
     }
 

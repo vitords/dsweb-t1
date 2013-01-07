@@ -43,8 +43,6 @@ public class UserController implements Serializable {
 
     public void addUser(ActionEvent actionEvent) {
 
-        System.out.println("Adicionando...");
-
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                 "Usuário "
                         + currentUser.getFirstName()
@@ -109,10 +107,12 @@ public class UserController implements Serializable {
         for(User u : userList) {
             if (u.getEmail().equals(currentUser.getEmail()) && u.getPassword().equals(currentUser.getPassword())) {
                 verified = true;
+                currentUser = u;
             }
         }
 
         if (!verified) {
+            System.out.println("Current user new");
             currentUser = new User();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Falha na autenticação. E-mail ou senha incorretos."));
         }

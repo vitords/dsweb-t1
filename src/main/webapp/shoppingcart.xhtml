@@ -69,7 +69,9 @@
         </p:panel>
 
         <p:panel>
-            <p:commandButton value="Finalizar pedido" icon="ui-icon-check" id="placeOrder" actionListener="#{orderController.addOrder}" />
+            <p:commandButton value="Finalizar pedido" icon="ui-icon-check" id="placeOrder" actionListener="#{orderController.addOrder}">
+                <f:attribute name="user" value="#{userController.currentUser}"/>
+            </p:commandButton>
         </p:panel>
 
 

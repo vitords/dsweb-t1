@@ -13,9 +13,9 @@
 </h:head>
 <h:body>
     <ui:composition template="templateLayout.xhtml">
-    <ui:define name="tituloJanela"> Bolicho do Nene - Administração </ui:define>
+        <ui:define name="tituloJanela"> Bolicho do Nene - Administração </ui:define>
 
-    <ui:define name="layoutConteudo">
+        <ui:define name="layoutConteudo">
 
             <h:form id="linksForm">
                 <h:commandLink action="admin"> <h:outputText value="Administração"/> </h:commandLink> <h:outputText value="  "/>
@@ -31,33 +31,33 @@
                 Produtos
             </f:facet>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="ID" />
-                </f:facet>
-                <h:outputText value="#{prod.id}" />
-            </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID" />
+                        </f:facet>
+                        <h:outputText value="#{prod.id}" />
+                    </p:column>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Nome" />
-                </f:facet>
-                <h:outputText value="#{prod.name}" />
-            </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome" />
+                        </f:facet>
+                        <h:outputText value="#{prod.name}" />
+                    </p:column>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Preço" />
-                </f:facet>
-                <h:outputText value="#{prod.price}" />
-            </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Preço" />
+                        </f:facet>
+                        <h:outputText value="#{prod.price}" />
+                    </p:column>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Peso" />
-                </f:facet>
-                <h:outputText value="#{prod.weight}" />
-            </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Peso" />
+                        </f:facet>
+                        <h:outputText value="#{prod.weight}" />
+                    </p:column>
 
             <p:column>
                 <f:facet name="header">

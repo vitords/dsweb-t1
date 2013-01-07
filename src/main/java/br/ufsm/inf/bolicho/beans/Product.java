@@ -75,4 +75,8 @@ public class Product implements Serializable {
     public void setQuantityOrdered(int quantityOrdered) {
         this.quantityOrdered = quantityOrdered;
     }
+
+    public double getTotalPrice() {
+        return quantityOrdered * price;
+    }
 }

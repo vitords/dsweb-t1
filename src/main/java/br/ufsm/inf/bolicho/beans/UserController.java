@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,11 +42,14 @@ public class UserController implements Serializable {
     }
 
     public void addUser(ActionEvent actionEvent) {
+
+        System.out.println("Adicionando...");
+
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                 "Usuário "
-                        + actionEvent.getComponent().getAttributes().get("firstName")
+                        + currentUser.getFirstName()
                         + " "
-                        +actionEvent.getComponent().getAttributes().get("lastName")
+                        + currentUser.getLastName()
                         + " cadastrado com sucesso!")
         );
 
@@ -66,7 +70,8 @@ public class UserController implements Serializable {
     }
 
     public List<User> searchUser(ActionEvent actionEvent) {
-        return null; // TODO: Implementar
+        // TODO: Implementar
+        return null;
     }
 
     public List<User> getUserList() {
@@ -96,5 +101,20 @@ public class UserController implements Serializable {
             }
         }
 
+    }
+
+    public void login(ActionEvent actionEvent) {
+        ArrayList<User> userList = (ArrayList<User>) getUserList();
+        boolean verified = false;
+        for(User u : userList) {
+            if (u.getEmail().equals(currentUser.getEmail()) && u.getPassword().equals(currentUser.getPassword())) {
+                verified = true;
+            }
+        }
+
+        if (!verified) {
+            currentUser = new User();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Falha na autenticação. E-mail ou senha incorretos."));
+        }
     }
 }

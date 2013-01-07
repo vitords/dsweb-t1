@@ -17,11 +17,11 @@
 
     <ui:define name="layoutConteudo">
 
-    <!--
+
     <h:form id="messagesForm">
         <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
     </h:form>
-    -->
+
 
     <h:form id="form">
         <p:panel header="Novo usuário">
@@ -63,20 +63,15 @@
 
             </h:panelGrid>
 
-            <p:commandButton value="Cadastrar" update="form" id="ajax" actionListener="#{userController.addUser}">
+            <p:commandButton value="Cadastrar" update=":form" id="addUser" actionListener="#{userController.addUser}">
                 <!-- Se quiser passsar atributos pro método definido em 'actionListener', é assim: -->
-                <f:attribute name="firstName" value="#{userController.currentUser.firstName}"/>
-                <f:attribute name="lastName" value="#{userController.currentUser.lastName}"/>
-                <f:attribute name="email" value="#{userController.currentUser.email}"/>
-                <f:attribute name="password" value="#{userController.currentUser.password}"/>
-                <f:attribute name="billingAddress" value="#{userController.currentUser.billingAddress}"/>
-                <f:attribute name="deliveryAddress" value="#{userController.currentUser.deliveryAddress}"/>
-                <f:attribute name="cpf" value="#{userController.currentUser.cpf}"/>
+                <f:attribute name="user" value="#{userController.currentUser}"/>
             </p:commandButton>
 
         </p:panel>
 
     </h:form>
+
     </ui:define>
     </ui:composition>
 </h:body>

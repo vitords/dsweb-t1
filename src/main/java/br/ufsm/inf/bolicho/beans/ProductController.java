@@ -93,11 +93,9 @@ public class ProductController implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Buscando por " + actionEvent.getComponent().getAttributes().get("name")));
         try {
-            for(int i = 0 ; i < aux.size() ; i++)
-            {
-                if(aux.get(i).getName().toLowerCase().contains(currentProduct.getName().toLowerCase()))
-                {
-                    list.add(aux.get(i));
+            for (Product p : aux) {
+                if (p.getName().toLowerCase().contains(currentProduct.getName().toLowerCase())) {
+                    list.add(p);
                 }
             }
         }  catch (Exception e) {

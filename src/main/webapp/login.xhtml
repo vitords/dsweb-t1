@@ -8,7 +8,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
-<body>
+<h:body>
     <h:form id="loginForm">
         <p:panel>
 
@@ -16,17 +16,17 @@
 
             <p:spacer width="10"/>
 
-            <h:outputLabel for="loginInput" value="Login:" />
-            <p:inputText id="loginInput" value="user@email.com"/>
+            <h:outputLabel for="loginInput" value="E-Mail:" />
+            <p:inputText id="loginInput" value="loginInput"/>
 
             <p:spacer width="3"/>
 
             <h:outputLabel for="senhaInput" value="Senha:" />
-            <p:password  id="senhaInput"/>
+            <p:password  id="senhaInput" value="senhaInput"/>
 
             <p:spacer width="3"/>
 
-            <p:commandButton value="Entrar" id="loginButton" />
+            <p:commandButton value="Entrar" id="loginButton"/>
 
             <p:spacer width="10"/>
 
@@ -41,5 +41,5 @@
 
         </p:panel>
     </h:form>
-</body>
+</h:body>
 </html>

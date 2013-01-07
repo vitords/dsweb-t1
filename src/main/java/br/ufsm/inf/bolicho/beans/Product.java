@@ -76,7 +76,7 @@ public class Product implements Serializable {
         this.quantityOrdered = quantityOrdered;
     }
 
-    public double getTotalPrice() {
+    public double totalPrice() {
         return quantityOrdered * price;
     }
 }

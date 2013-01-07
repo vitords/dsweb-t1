@@ -11,12 +11,34 @@
 <body>
     <h:form id="loginForm">
         <p:panel>
-            <p:outputLabel value="Login:" />
+
+            <h:outputText value="Seja bem vindo!"/>
+
+            <p:spacer width="10"/>
+
+            <h:outputLabel for="loginInput" value="Login:" />
             <p:inputText id="loginInput" value="user@email.com"/>
-            <p:outputLabel value="Senha:" />
+
+            <p:spacer width="3"/>
+
+            <h:outputLabel for="senhaInput" value="Senha:" />
             <p:password  id="senhaInput"/>
+
+            <p:spacer width="3"/>
+
             <p:commandButton value="Entrar" id="loginButton" />
-            <p:commandLink action="signup"> <h:outputText value="Novo no site? Cadastre-se clicando aqui!"/> </p:commandLink>
+
+            <p:spacer width="10"/>
+
+            <p:commandLink action="signup">
+                <h:outputText value="Novo no site? Cadastre-se clicando aqui!"/>
+            </p:commandLink>
+
+            <p:commandLink action="shoppingcart" style="float: right">
+                <h:outputText value="Meu carrinho de compras"/>
+            </p:commandLink>
+            <p:commandLink action="shoppingcart" styleClass="ui-icon ui-icon-cart" style="float: right"/>
+
         </p:panel>
     </h:form>
 </body>

@@ -53,7 +53,9 @@
                     </h:panelGrid>
                 </p:panel>
                 <p:panel>
-                    <p:commandButton value="Atualizar Produto" icon="ui-icon-check" id="updateProduct" ajax="false" action="adminProducts" actionListener="#{productController.updateProduct}">
+                    <p:commandButton value="Atualizar Produto" icon="ui-icon-check" id="updateProduct"
+                                     ajax="false" action="adminProducts" actionListener="#{productController.updateProduct}"
+                                    update="#{productController}">
                         <f:attribute name="product" value="#{productController.currentProduct}"/>
                     </p:commandButton>
                 </p:panel>

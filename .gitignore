@@ -1,4 +1,5 @@
 *.class
 *.war
-
+*.iws
+/target/
 dsweb-t1.war/

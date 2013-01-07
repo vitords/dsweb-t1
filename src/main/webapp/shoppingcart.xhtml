@@ -43,7 +43,7 @@
                 </p:column>
 
                 <p:column headerText="Quantidade" >
-                    #{prod.quantityOrdered}
+                    <h:inputText value="#{prod.quantityOrdered}" size="4" />
                 </p:column>
 
                 <p:column headerText="Preço total">
@@ -53,6 +53,8 @@
                 <f:facet name="footer">
                     <p:commandButton value="Remover produtos selecionados" icon="ui-icon-close" update="products"
                                      id="removeSelectedButton" actionListener="#{orderController.removeSelectedProducts}" />
+                    <p:commandButton value="Salvar alterações" icon="ui-icon-close" update="products"
+                                     id="saveCartChanges" actionListener="#{orderController.saveCartChanges}"/>
                 </f:facet>
             </p:dataTable>
 

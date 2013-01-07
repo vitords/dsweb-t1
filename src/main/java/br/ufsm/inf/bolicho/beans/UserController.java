@@ -24,6 +24,7 @@ public class UserController implements Serializable {
 
     private User currentUser;
     private UserDAO userDAO;
+    private User[] selectedUsers;
 
     public UserController() {
         currentUser = new User();
@@ -75,5 +76,25 @@ public class UserController implements Serializable {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
         return null;
+    }
+
+    public void setSelectedUsers(User[] selectedUsers) {
+        this.selectedUsers = selectedUsers;
+    }
+
+    public User[] getSelectedUsers() {
+        return this.selectedUsers;
+    }
+
+    public void removeSelectedUsers(ActionEvent actionEvent) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuários removidos."));
+        for (User selectUser : selectedUsers) {
+            try {
+                this.userDAO.delete(selectUser);
+            } catch (DAOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+
     }
 }

@@ -18,13 +18,13 @@
         <ui:define name="layoutConteudo">
 
             <h:form id="linksForm">
-                <h:commandLink action="admin"> <h:outputText value="Administração"/> </h:commandLink> <h:outputText
-                    value="  "/>
-                <h:commandLink action="adminProducts"> <h:outputText value="Gerenciar Produtos"/> </h:commandLink>
-                <h:outputText value="  "/>
-                <h:commandLink action="adminUsers"> <h:outputText value="Gerenciar Usuários"/> </h:commandLink>
-                <h:outputText value="  "/>
-                <h:commandLink action="index"> <h:outputText value="Sair"/> </h:commandLink>
+                <p:commandLink action="admin"> <h:outputText value="Administração"/> </p:commandLink>
+                <p:spacer width="10"/>
+                <p:commandLink action="adminProducts"> <h:outputText value="Gerenciar Produtos"/> </p:commandLink>
+                <p:spacer width="10"/>
+                <p:commandLink action="adminUsers"> <h:outputText value="Gerenciar Usuários"/> </p:commandLink>
+                <p:spacer width="10"/>
+                <p:commandLink action="index"> <h:outputText value="Sair"/> </p:commandLink>
             </h:form>
             <p:dataTable id="dataTableProduct" var="prod" value="#{productController.productList}"
                          paginator="true" rows="10"

@@ -22,37 +22,35 @@
                 <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
             </h:form>
 
-            <h:form id="shoppingForm">
+            <h:form id="updateProductForm">
                 <p:panel header="Dados do Produto: #{productController.currentProduct.name}">
-                    <p:panelGrid columns="2">
+                    <h:panelGrid columns="2">
+
                         <p:graphicImage id="productImg" value="/images/test.png" />
-                        <h:form id="productData">
-                            <h:outputText value="Nome: " />
-                            <h:inputText id="nameProduct" value="#{productController.currentProduct.name}" required="true" />
-                            <p:watermark for="nameProduct" value="#{productController.currentProduct.name}" /> <br/>
 
-                            <h:outputText value="Preço: " />
-                            <h:inputText id="priceProduct" value="#{productController.currentProduct.price}" required="true" />
-                            <p:watermark for="priceProduct" value="#{productController.currentProduct.price}" /> <br/>
+                        <h:panelGrid columns="3">
+                            <h:outputLabel for="nameProduct" value="Nome: " />
+                            <p:inputText id="nameProduct" value="#{productController.currentProduct.name}" required="true" />
+                            <p:watermark for="nameProduct" value="#{productController.currentProduct.name}" />
 
-                            <h:outputText value="Quantidade em estoque: " />
-                            <h:inputText id="stockQuantProduct" value="#{productController.currentProduct.quantityInStock}" required="true" />
-                            <p:watermark for="stockQuantProduct" value="#{productController.currentProduct.quantityInStock}" /> <br/>
+                            <h:outputLabel for="priceProduct" value="Preço: " />
+                            <p:inputText id="priceProduct" value="#{productController.currentProduct.price}" required="true" />
+                            <p:watermark for="priceProduct" value="#{productController.currentProduct.price}" />
 
-                            <h:outputText value="Quantidade vendida: " />
-                            <h:inputText id="stockOrderedProduct" value="#{productController.currentProduct.quantityOrdered}" required="true" />
-                            <p:watermark for="stockOrderedProduct" value="#{productController.currentProduct.quantityOrdered}" /> <br/>
+                            <h:outputLabel for="stockQuantProduct" value="Quantidade em estoque: " />
+                            <p:inputText id="stockQuantProduct" value="#{productController.currentProduct.quantityInStock}" required="true" />
+                            <p:watermark for="stockQuantProduct" value="#{productController.currentProduct.quantityInStock}" />
 
-                            <h:outputText value="Peso: " />
-                            <h:inputText id="weightProduct" value="#{productController.currentProduct.weight}" required="true" />
-                            <p:watermark for="weightProduct" value="#{productController.currentProduct.weight}" /> <br/>
+                            <h:outputLabel for="weightProduct" value="Peso: " />
+                            <p:inputText id="weightProduct" value="#{productController.currentProduct.weight}" required="true" />
+                            <p:watermark for="weightProduct" value="#{productController.currentProduct.weight}" />
 
-                            <h:outputText value="Descrição: " />
-                            <h:inputTextarea id="descriptionProduct" value="#{productController.currentProduct.description}" required="true" />
-                            <p:watermark for="descriptionProduct" value="#{productController.currentProduct.description}" /> <br/>
+                            <h:outputLabel for="descriptionProduct" value="Descrição: " />
+                            <p:inputTextarea id="descriptionProduct" value="#{productController.currentProduct.description}" required="true" />
+                            <p:watermark for="descriptionProduct" value="#{productController.currentProduct.description}" />
 
-                        </h:form>
-                    </p:panelGrid>
+                        </h:panelGrid>
+                    </h:panelGrid>
                 </p:panel>
                 <p:panel>
                     <p:commandButton value="Atualizar Produto" icon="ui-icon-check" id="updateProduct" ajax="false" action="adminProducts" actionListener="#{productController.updateProduct}">

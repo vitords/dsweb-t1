@@ -35,13 +35,13 @@ div{
 
 #rodape {
     width: 100%;
-    background: white;
+    /*background: white;*/
     float: left;
 }
 
 #cabecalho {
     width: 100%;
-    background: white;
+    /*background: white;*/
     float: left;
     text-align: center;
 }

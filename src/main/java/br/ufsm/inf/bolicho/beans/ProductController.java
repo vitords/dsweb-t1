@@ -95,7 +95,7 @@ public class ProductController implements Serializable {
         try {
             for(int i = 0 ; i < aux.size() ; i++)
             {
-                if(aux.get(i).getName().startsWith(currentProduct.getName()))
+                if(aux.get(i).getName().toLowerCase().contains(currentProduct.getName().toLowerCase()))
                 {
                     list.add(aux.get(i));
                 }

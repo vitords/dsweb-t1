@@ -30,7 +30,8 @@ public class PaymentsTable implements Serializable {
         int maxPayments = getMaxPayments(product.getPrice());
         List<String> payments = new ArrayList<String>();
         StringBuilder builder = new StringBuilder();
-        DecimalFormat decimalFormat = new DecimalFormat("0.000");
+        DecimalFormat interestFormat = new DecimalFormat("0.000");
+        DecimalFormat priceFormat = new DecimalFormat("0.00");
         for (int i = 1; i <= maxPayments; ++i) {
             builder.append(i);
             builder.append("x de ");
@@ -39,13 +40,15 @@ public class PaymentsTable implements Serializable {
                 double monthlyInterest = MIN_INTEREST + accumulativeInterest;
                 double interest = Math.pow(monthlyInterest, (i + 1) - MIN_PAYMENTS_FOR_INTEREST);
                 double finalAmount = product.getPrice()* interest;
-                builder.append(finalAmount/i);
-                builder.append(" R$ (");
-                builder.append(decimalFormat.format((monthlyInterest - 1)*100));
+                builder.append(" R$ ");
+                builder.append(priceFormat.format(finalAmount/i));
+                builder.append(" (");
+                builder.append(interestFormat.format((monthlyInterest - 1) * 100));
                 builder.append("% a.m.)");
             } else {
-                builder.append(product.getPrice()/i);
-                builder.append(" R$ (sem juros)"); //I'm assuming we'll use BRL (we should probably work on some kind of localization
+                builder.append(" R$ ");
+                builder.append(priceFormat.format(product.getPrice()/i));
+                builder.append(" (sem juros)"); //I'm assuming we'll use BRL (we should probably work on some kind of localization
                                                    //for the final project
             }
             payments.add(builder.toString());

@@ -40,13 +40,15 @@ public class PaymentsTable implements Serializable {
                 double monthlyInterest = MIN_INTEREST + accumulativeInterest;
                 double interest = Math.pow(monthlyInterest, (i + 1) - MIN_PAYMENTS_FOR_INTEREST);
                 double finalAmount = product.getPrice()* interest;
+                builder.append(" R$ ");
                 builder.append(priceFormat.format(finalAmount/i));
-                builder.append(" R$ (");
+                builder.append(" (");
                 builder.append(interestFormat.format((monthlyInterest - 1) * 100));
                 builder.append("% a.m.)");
             } else {
+                builder.append(" R$ ");
                 builder.append(priceFormat.format(product.getPrice()/i));
-                builder.append(" R$ (sem juros)"); //I'm assuming we'll use BRL (we should probably work on some kind of localization
+                builder.append(" (sem juros)"); //I'm assuming we'll use BRL (we should probably work on some kind of localization
                                                    //for the final project
             }
             payments.add(builder.toString());

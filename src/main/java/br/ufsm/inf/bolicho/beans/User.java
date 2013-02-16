@@ -1,5 +1,7 @@
 package br.ufsm.inf.bolicho.beans;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,8 +16,9 @@ import java.io.Serializable;
 @Table(name = "\"User\"")
 public class User implements Serializable {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_gen")
+    @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_id_seq", allocationSize = 1)
     private int id;
     @Column(name = "first_name")
     private String firstName;

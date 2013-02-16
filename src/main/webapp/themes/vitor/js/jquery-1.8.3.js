@@ -6914,7 +6914,7 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox ) {
 		val = 0;
 
 	for ( ; i < 4; i += 2 ) {
-		// both box models exclude margin, so add it if we want it
+		// both box model exclude margin, so add it if we want it
 		if ( extra === "margin" ) {
 			// we use jQuery.css instead of curCSS here
 			// because of the reliableMarginRight CSS hook!

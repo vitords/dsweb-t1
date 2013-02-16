@@ -1,16 +1,6 @@
 package br.ufsm.inf.bolicho.dao;
 
-import br.ufsm.inf.bolicho.PojoMapper;
-import br.ufsm.inf.bolicho.beans.User;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import br.ufsm.inf.bolicho.model.User;
 
 /**
  * Created with IntelliJ IDEA.

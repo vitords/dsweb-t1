@@ -8,7 +8,7 @@ package br.ufsm.inf.bolicho.dao;
  * To change this template use File | Settings | File Templates.
  */
 
-import br.ufsm.inf.bolicho.EntityManagerUtil;
+import br.ufsm.inf.bolicho.util.EntityManagerUtil;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 

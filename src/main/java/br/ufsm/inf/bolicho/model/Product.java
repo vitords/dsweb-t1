@@ -1,4 +1,4 @@
-package br.ufsm.inf.bolicho.beans;
+package br.ufsm.inf.bolicho.model;
 
 import java.io.Serializable;
 

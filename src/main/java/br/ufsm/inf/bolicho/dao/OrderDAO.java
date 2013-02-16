@@ -1,7 +1,7 @@
 package br.ufsm.inf.bolicho.dao;
 
-import br.ufsm.inf.bolicho.PojoMapper;
-import br.ufsm.inf.bolicho.beans.Order;
+import br.ufsm.inf.bolicho.util.PojoMapper;
+import br.ufsm.inf.bolicho.model.Order;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import java.io.File;

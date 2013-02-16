@@ -1,6 +1,4 @@
-package br.ufsm.inf.bolicho.beans;
-
-import org.hibernate.annotations.GenericGenerator;
+package br.ufsm.inf.bolicho.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

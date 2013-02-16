@@ -1,7 +1,8 @@
-package br.ufsm.inf.bolicho.beans;
+package br.ufsm.inf.bolicho.controller;
 
 import br.ufsm.inf.bolicho.dao.CategoryDAO;
 import br.ufsm.inf.bolicho.dao.DAOException;
+import br.ufsm.inf.bolicho.model.Category;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;

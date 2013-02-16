@@ -1,4 +1,4 @@
-package br.ufsm.inf.bolicho;
+package br.ufsm.inf.bolicho.util;
 
 /**
  * Created with IntelliJ IDEA.

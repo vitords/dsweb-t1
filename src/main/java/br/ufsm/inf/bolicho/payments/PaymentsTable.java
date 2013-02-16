@@ -1,11 +1,9 @@
 package br.ufsm.inf.bolicho.payments;
 
-import br.ufsm.inf.bolicho.beans.Product;
+import br.ufsm.inf.bolicho.model.Product;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;

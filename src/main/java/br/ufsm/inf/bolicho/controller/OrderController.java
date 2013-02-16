@@ -1,7 +1,10 @@
-package br.ufsm.inf.bolicho.beans;
+package br.ufsm.inf.bolicho.controller;
 
 import br.ufsm.inf.bolicho.dao.DAOException;
 import br.ufsm.inf.bolicho.dao.OrderDAO;
+import br.ufsm.inf.bolicho.model.Order;
+import br.ufsm.inf.bolicho.model.Product;
+import br.ufsm.inf.bolicho.model.User;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;

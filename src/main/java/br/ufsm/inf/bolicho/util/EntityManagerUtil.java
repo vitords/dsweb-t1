@@ -1,4 +1,4 @@
-package br.ufsm.inf.bolicho;
+package br.ufsm.inf.bolicho.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

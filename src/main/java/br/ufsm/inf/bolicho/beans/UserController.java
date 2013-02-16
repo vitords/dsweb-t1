@@ -1,6 +1,7 @@
 package br.ufsm.inf.bolicho.beans;
 
 import br.ufsm.inf.bolicho.dao.DAOException;
+import br.ufsm.inf.bolicho.dao.NewUserDAO;
 import br.ufsm.inf.bolicho.dao.UserDAO;
 
 import javax.faces.application.FacesMessage;
@@ -24,13 +25,13 @@ import java.util.List;
 public class UserController implements Serializable {
 
     private User currentUser;
-    private UserDAO userDAO;
+    private NewUserDAO userDAO;
     private User[] selectedUsers;
 
     public UserController() {
         currentUser = new User();
-        userDAO = new UserDAO();
-        userDAO.initialize();
+        userDAO = new NewUserDAO();
+        //userDAO.initialize();
     }
 
     public User getCurrentUser() {
@@ -51,12 +52,14 @@ public class UserController implements Serializable {
                         + " cadastrado com sucesso!")
         );
 
-        try {
+        userDAO.salvar(currentUser);
+
+       /* try {
             userDAO.insert(currentUser);
             currentUser = new User();
         } catch (DAOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        }*/
     }
 
     public void removeUser(ActionEvent actionEvent) {
@@ -64,11 +67,11 @@ public class UserController implements Serializable {
     }
 
     public void updateUser(ActionEvent actionEvent) {
-        try {
+        /*try {
             userDAO.update(currentUser);
         } catch (DAOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        }     */
     }
 
     public List<User> searchUser(ActionEvent actionEvent) {
@@ -77,11 +80,11 @@ public class UserController implements Serializable {
     }
 
     public List<User> getUserList() {
-        try {
+        /*try {
             return userDAO.retrieveAll();
         } catch (DAOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        }   */
         return null;
     }
 
@@ -95,13 +98,13 @@ public class UserController implements Serializable {
 
     public void removeSelectedUsers(ActionEvent actionEvent) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuários removidos."));
-        for (User selectUser : selectedUsers) {
+       /* for (User selectUser : selectedUsers) {
             try {
                 this.userDAO.delete(selectUser);
             } catch (DAOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
-        }
+        }   */
 
     }
 

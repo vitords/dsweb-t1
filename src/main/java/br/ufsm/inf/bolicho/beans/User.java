@@ -1,5 +1,6 @@
 package br.ufsm.inf.bolicho.beans;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -9,15 +10,26 @@ import java.io.Serializable;
  * Time: 16:03
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name = "User")
 public class User implements Serializable {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
+    @Column(name = "billing_address")
     private String billingAddress;
+    @Column(name = "delivery_address")
     private String deliveryAddress;
+    @Column(name = "cpf")
     private String cpf;
 
     public int getId() {

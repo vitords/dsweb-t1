@@ -25,12 +25,12 @@ import java.util.List;
 public class UserController implements Serializable {
 
     private User currentUser;
-    private NewUserDAO userDAO;
+    //private NewUserDAO userDAO;
     private User[] selectedUsers;
 
     public UserController() {
         currentUser = new User();
-        userDAO = new NewUserDAO();
+        //userDAO = new NewUserDAO();
         //userDAO.initialize();
     }
 
@@ -52,7 +52,10 @@ public class UserController implements Serializable {
                         + " cadastrado com sucesso!")
         );
 
-        userDAO.salvar(currentUser);
+        //userDAO.salvar(currentUser);
+        new NewUserDAO().salvar(currentUser);
+        currentUser = new User();
+
 
        /* try {
             userDAO.insert(currentUser);

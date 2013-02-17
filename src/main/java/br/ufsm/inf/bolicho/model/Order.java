@@ -24,13 +24,14 @@ public class Order implements Serializable {
     @OneToOne
     private User user;
     @OneToMany
-    @JoinColumn(name = "products_id")
-    @JoinTable(name = "\"order_products\"")
-    @OrderColumn
+    @JoinTable(name = "\"order_products\"",
+            joinColumns = {@JoinColumn(name ="product_id")},
+            inverseJoinColumns = {@JoinColumn(name ="order_id")})
     private List<Product> products;
     @OneToMany
-    @JoinColumn(name = "selected_id")
-    @JoinTable(name = "\"order_selected_product\"")
+    @JoinTable(name = "\"order_selected_product\"",
+            joinColumns = {@JoinColumn(name ="selected_product_id")},
+            inverseJoinColumns = {@JoinColumn(name ="order_id")})
     @OrderColumn
     private List<Product> selectedProducts;
 

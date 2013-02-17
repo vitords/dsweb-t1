@@ -69,9 +69,10 @@
         </p:panel>
 
         <p:panel>
-            <p:commandButton value="Finalizar pedido" icon="ui-icon-check" id="placeOrder" actionListener="#{orderController.addOrder}">
-                <f:attribute name="user" value="#{userController.currentUser}"/>
+            <p:commandButton value="Finalizar pedido" icon="ui-icon-check" id="placeOrder" actionListener="#{orderController.addOrder}" rendered="#{loginController.logged}">
+                <f:attribute name="user" value="#{loginController.loggedUser}" rendered="#{loginController.logged}"/>
             </p:commandButton>
+            <h:outputText value="É necessário estar logado para finalizar o pedido" rendered="#{!loginController.logged}" />
         </p:panel>
 
 

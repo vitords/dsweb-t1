@@ -32,7 +32,7 @@
             <p:commandButton value="Entrar" id="loginButton" actionListener="#{loginController.login}" ajax="false" rendered="#{!loginController.logged}"/>
 
             <p:spacer width="3" rendered="#{loginController.loginFailed}"/>
-            <h:outputLabel value="Falha no login. Tente novamente." rendered="#{loginController.loginFailed}"/>
+            <h:outputText value="Falha no login. Tente novamente." rendered="#{loginController.loginFailed}"/>
 
             <p:spacer width="10"/>
 

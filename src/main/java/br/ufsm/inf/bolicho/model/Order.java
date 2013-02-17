@@ -24,9 +24,13 @@ public class Order implements Serializable {
     @OneToOne
     private User user;
     @OneToMany
+    @JoinColumn(name = "products_id")
+    @JoinTable(name = "\"order_products\"")
     @OrderColumn
     private List<Product> products;
     @OneToMany
+    @JoinColumn(name = "selected_id")
+    @JoinTable(name = "\"order_selected_product\"")
     @OrderColumn
     private List<Product> selectedProducts;
 

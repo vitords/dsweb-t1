@@ -1,5 +1,6 @@
 package br.ufsm.inf.bolicho.controller;
 
+import br.ufsm.inf.bolicho.dao.OrderDAO;
 import br.ufsm.inf.bolicho.model.Order;
 import br.ufsm.inf.bolicho.model.Product;
 import br.ufsm.inf.bolicho.model.User;
@@ -43,7 +44,7 @@ public class OrderController implements Serializable {
         User user = (User) actionEvent.getComponent().getAttributes().get("user");
 
                 currentOrder.setUser(user);
-                //orderDAO.insert(currentOrder);
+                new OrderDAO().salvar(currentOrder);
                 currentOrder = new Order();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Pedido realizado."));
     }
@@ -57,13 +58,11 @@ public class OrderController implements Serializable {
     }
 
     public List<Product> searchOrder(ActionEvent actionEvent) {
-        return null; // TODO: Implementar para o T2
+        return null; // TODO: Implementar
     }
 
-    public List<Order> getOrderList() {
-
-            //return orderDAO.retrieveAll();
-        return null;
+    public List<Order> getOrderList() throws Exception {
+        return new OrderDAO().findAll();
     }
 
     public void addProduct(ActionEvent actionEvent) {

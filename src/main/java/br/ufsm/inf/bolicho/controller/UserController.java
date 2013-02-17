@@ -24,13 +24,10 @@ import java.util.List;
 public class UserController implements Serializable {
 
     private User currentUser;
-    //private NewUserDAO userDAO;
     private User[] selectedUsers;
 
     public UserController() {
         currentUser = new User();
-        //userDAO = new NewUserDAO();
-        //userDAO.initialize();
     }
 
     public User getCurrentUser() {
@@ -51,17 +48,9 @@ public class UserController implements Serializable {
                         + " cadastrado com sucesso!")
         );
 
-        //userDAO.salvar(currentUser);
         new NewUserDAO().salvar(currentUser);
         currentUser = new User();
 
-
-       /* try {
-            userDAO.insert(currentUser);
-            currentUser = new User();
-        } catch (DAOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }*/
     }
 
     public void removeUser(ActionEvent actionEvent) {

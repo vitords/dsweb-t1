@@ -1,6 +1,7 @@
 package br.ufsm.inf.bolicho.controller;
 
 import br.ufsm.inf.bolicho.dao.DAOException;
+import br.ufsm.inf.bolicho.dao.NewProductDAO;
 import br.ufsm.inf.bolicho.dao.ProductDAO;
 import br.ufsm.inf.bolicho.model.Product;
 
@@ -28,15 +29,12 @@ public class ProductController implements Serializable {
     private Product currentProduct;
     private Product lastProduct;
     private List<Product> searchResults;
-    private ProductDAO productDAO;
     private Product[] selectedProducts;
 
     public ProductController() {
         currentProduct = new Product();
         lastProduct = null;
         searchResults = new ArrayList<Product>();
-        productDAO = new ProductDAO();
-        productDAO.initialize();
     }
 
     public Product getCurrentProduct() {
@@ -70,20 +68,17 @@ public class ProductController implements Serializable {
                         + " cadastrado!")
         );
 
-        try {
-            productDAO.insert(currentProduct);
-            lastProduct = currentProduct;
-            currentProduct = new Product();
-        } catch (DAOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        new NewProductDAO().salvar(currentProduct);
+        lastProduct = currentProduct;
+        currentProduct = new Product();
+
     }
 
     public void updateProduct(ActionEvent actionEvent) {
-        productDAO.update(currentProduct);
+        new NewProductDAO().alterar(currentProduct);
     }
 
-    public void searchProduct(ActionEvent actionEvent) {
+    public void searchProduct(ActionEvent actionEvent) throws Exception {
         List<Product> aux = getProductList();
         List<Product> list = new ArrayList<Product>();
         list.clear();
@@ -101,8 +96,10 @@ public class ProductController implements Serializable {
         searchResults = list;
     }
 
-    public List<Product> getProductList() {
-        return productDAO.retrieveAll();
+    public List<Product> getProductList() throws Exception {
+        // Causa: javax.resource.ResourceException: IJ000453: Unable to get managed connection for java:/dswebDatasource
+        //return new NewProductDAO().findAll();
+        return null;
     }
 
 
@@ -118,7 +115,7 @@ public class ProductController implements Serializable {
     public void removeSelectedProducts(ActionEvent actionEvent) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produtos removidos."));
         for (Product selectedProduct : selectedProducts) {
-            productDAO.delete(selectedProduct);
+            new NewProductDAO().excluir(selectedProduct.getId());
         }
 
     }

@@ -20,7 +20,7 @@ public class NewUserDAO extends NewGenericDAO<User> {
         update(user);
     }
 
-    public void excluir(long id) {
+    public void excluir(int id) {
         User u = findById(id);
         delete(u);
     }

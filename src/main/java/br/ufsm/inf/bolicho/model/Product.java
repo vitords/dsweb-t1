@@ -1,5 +1,6 @@
 package br.ufsm.inf.bolicho.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -10,14 +11,25 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 
+@Entity
+@Table(name = "\"Product\"")
 public class Product implements Serializable {
-
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq_gen")
+    @SequenceGenerator(name = "product_seq_gen", sequenceName = "product_id_seq", allocationSize = 1)
     private int id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
+    @Column(name = "price")
     private double price;
+    @Column(name = "weight")
     private double weight;
+    @Column(name = "quantity_in_stock")
     private int quantityInStock;
+    @Column(name = "quantity_ordered")
     private int quantityOrdered;
 
     public int getId() {

@@ -34,7 +34,7 @@ public class NewGenericDAO<T extends Serializable> {
         return entityManager;
     }
 
-    protected void save(T entity) {
+    public void save(T entity) {
         EntityTransaction tx = getEntityManager().getTransaction();
 
         try {

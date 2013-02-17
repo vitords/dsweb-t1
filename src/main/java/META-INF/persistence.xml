@@ -5,6 +5,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <non-jta-data-source>java:/dswebDatasource</non-jta-data-source>
         <class>br.ufsm.inf.bolicho.model.User</class>
+        <class>br.ufsm.inf.bolicho.model.Product</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/dsweb" />
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />

@@ -1,7 +1,5 @@
 package br.ufsm.inf.bolicho.controller;
 
-import br.ufsm.inf.bolicho.dao.DAOException;
-import br.ufsm.inf.bolicho.dao.NewProductDAO;
 import br.ufsm.inf.bolicho.dao.ProductDAO;
 import br.ufsm.inf.bolicho.model.Product;
 
@@ -68,14 +66,14 @@ public class ProductController implements Serializable {
                         + " cadastrado!")
         );
 
-        new NewProductDAO().salvar(currentProduct);
+        new ProductDAO().salvar(currentProduct);
         lastProduct = currentProduct;
         currentProduct = new Product();
 
     }
 
     public void updateProduct(ActionEvent actionEvent) {
-        new NewProductDAO().alterar(currentProduct);
+        new ProductDAO().alterar(currentProduct);
     }
 
     public void searchProduct(ActionEvent actionEvent) throws Exception {
@@ -97,9 +95,7 @@ public class ProductController implements Serializable {
     }
 
     public List<Product> getProductList() throws Exception {
-        // Causa: javax.resource.ResourceException: IJ000453: Unable to get managed connection for java:/dswebDatasource
-        //return new NewProductDAO().findAll();
-        return null;
+        return new ProductDAO().findAll();
     }
 
 
@@ -115,7 +111,7 @@ public class ProductController implements Serializable {
     public void removeSelectedProducts(ActionEvent actionEvent) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produtos removidos."));
         for (Product selectedProduct : selectedProducts) {
-            new NewProductDAO().excluir(selectedProduct.getId());
+            new ProductDAO().excluir(selectedProduct.getId());
         }
 
     }

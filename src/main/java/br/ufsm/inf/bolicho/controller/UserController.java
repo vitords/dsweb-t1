@@ -1,6 +1,6 @@
 package br.ufsm.inf.bolicho.controller;
 
-import br.ufsm.inf.bolicho.dao.NewUserDAO;
+import br.ufsm.inf.bolicho.dao.UserDAO;
 import br.ufsm.inf.bolicho.model.User;
 
 import javax.faces.application.FacesMessage;
@@ -48,21 +48,17 @@ public class UserController implements Serializable {
                         + " cadastrado com sucesso!")
         );
 
-        new NewUserDAO().salvar(currentUser);
+        new UserDAO().salvar(currentUser);
         currentUser = new User();
 
     }
 
     public void removeUser(ActionEvent actionEvent) {
-        // TODO: Implementar
+        new UserDAO().excluir(currentUser.getId());
     }
 
     public void updateUser(ActionEvent actionEvent) {
-        /*try {
-            userDAO.update(currentUser);
-        } catch (DAOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }     */
+        new UserDAO().alterar(currentUser);
     }
 
     public List<User> searchUser(ActionEvent actionEvent) {
@@ -71,12 +67,11 @@ public class UserController implements Serializable {
     }
 
     public List<User> getUserList() {
-        /*try {
-            return userDAO.retrieveAll();
-        } catch (DAOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }   */
-        return null;
+        try {
+            return new UserDAO().findAll();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void setSelectedUsers(User[] selectedUsers) {
@@ -89,14 +84,9 @@ public class UserController implements Serializable {
 
     public void removeSelectedUsers(ActionEvent actionEvent) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuários removidos."));
-       /* for (User selectUser : selectedUsers) {
-            try {
-                this.userDAO.delete(selectUser);
-            } catch (DAOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            }
-        }   */
-
+        for (User selectedUser : selectedUsers) {
+            new UserDAO().excluir(selectedUser.getId());
+        }
     }
 
     public void login(ActionEvent actionEvent) {
@@ -110,7 +100,6 @@ public class UserController implements Serializable {
         }
 
         if (!verified) {
-            System.out.println("Current user new");
             currentUser = new User();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Falha na autenticação. E-mail ou senha incorretos."));
         }

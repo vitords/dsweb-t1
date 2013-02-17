@@ -2,6 +2,8 @@ package br.ufsm.inf.bolicho.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,18 +18,17 @@ import java.util.List;
 public class Order implements Serializable {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator =  "order_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator =  "order_id_gen")
     @SequenceGenerator(name = "order_id_gen", sequenceName = "order_id_seq", allocationSize = 1)
     private int id;
     @OneToOne
-    @Column(name = "user")
     private User user;
     @OneToMany
-    @Column(name = "products")
+    @OrderColumn
     private List<Product> products;
     @OneToMany
-    @Column(name = "selected_products")
-    private Product[] selectedProducts;
+    @OrderColumn
+    private List<Product> selectedProducts;
 
     public int getId() {
         return id;
@@ -54,10 +55,10 @@ public class Order implements Serializable {
     }
 
     public void setSelectedProducts(Product[] selectedProducts) {
-        this.selectedProducts = selectedProducts;
+        this.selectedProducts = Arrays.asList(selectedProducts);
     }
 
-    public Product[] getSelectedProducts() {
+    public List<Product> getSelectedProducts() {
         return selectedProducts;
     }
 

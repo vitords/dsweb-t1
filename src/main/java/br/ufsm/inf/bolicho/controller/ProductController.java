@@ -95,9 +95,7 @@ public class ProductController implements Serializable {
     }
 
     public List<Product> getProductList() throws Exception {
-        // Causa: javax.resource.ResourceException: IJ000453: Unable to get managed connection for java:/dswebDatasource
-        //return new ProductDAO().findAll();
-        return null;
+        return new ProductDAO().findAll();
     }
 
 

@@ -88,20 +88,4 @@ public class UserController implements Serializable {
             new UserDAO().excluir(selectedUser.getId());
         }
     }
-
-    public void login(ActionEvent actionEvent) {
-        ArrayList<User> userList = (ArrayList<User>) getUserList();
-        boolean verified = false;
-        for(User u : userList) {
-            if (u.getEmail().equals(currentUser.getEmail()) && u.getPassword().equals(currentUser.getPassword())) {
-                verified = true;
-                currentUser = u;
-            }
-        }
-
-        if (!verified) {
-            currentUser = new User();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Falha na autenticação. E-mail ou senha incorretos."));
-        }
-    }
 }

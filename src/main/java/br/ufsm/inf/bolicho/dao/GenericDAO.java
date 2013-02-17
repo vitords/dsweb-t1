@@ -103,9 +103,9 @@ public class GenericDAO<T extends Serializable> {
         return objects;
     }
 
-    public T findByName(String nome) {
+    public T findByName(String name) {
         Session session = (Session) getEntityManager().getDelegate();
-        return (T) session.createCriteria(persistentClass).add(Restrictions.eq("nome", nome).ignoreCase()).uniqueResult();
+        return (T) session.createCriteria(persistentClass).add(Restrictions.eq("name", name).ignoreCase()).uniqueResult();
     }
 
     public T findById(int id) {

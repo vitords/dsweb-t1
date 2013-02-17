@@ -7,21 +7,26 @@
   <managed-bean>
         <managed-bean-name>productController</managed-bean-name>
         <managed-bean-class>br.ufsm.inf.bolicho.controller.ProductController</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>userController</managed-bean-name>
         <managed-bean-class>br.ufsm.inf.bolicho.controller.UserController</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>categoryController</managed-bean-name>
         <managed-bean-class>br.ufsm.inf.bolicho.controller.CategoryController</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>orderController</managed-bean-name>
         <managed-bean-class>br.ufsm.inf.bolicho.controller.OrderController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>loginController</managed-bean-name>
+        <managed-bean-class>br.ufsm.inf.bolicho.controller.LoginController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 </faces-config>

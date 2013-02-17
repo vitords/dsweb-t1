@@ -12,26 +12,32 @@
     <h:form id="loginForm">
         <p:panel>
 
-            <h:outputText value="Seja bem vindo!"/>
+            <h:outputText value="Seja bem vindo!" rendered="#{!loginController.logged}"/>
+            <h:outputText value="Seja bem vindo #{loginController.loggedUser.firstName}!" rendered="#{loginController.logged}"/>
 
             <p:spacer width="10"/>
 
-            <h:outputLabel for="loginInput" value="E-mail:" />
-            <p:inputText id="loginInput" value="#{userController.currentUser.email}" />
+            <p:commandButton value="Sair" id="logoutButton" actionListener="#{loginController.logout}" ajax="false" rendered="#{loginController.logged}"/>
+
+            <h:outputLabel for="loginInput" value="E-mail:" rendered="#{!loginController.logged}"/>
+            <p:inputText id="loginInput" value="#{loginController.email}" rendered="#{!loginController.logged}"/>
 
             <p:spacer width="3"/>
 
-            <h:outputLabel for="senhaInput" value="Senha:" />
-            <p:password  id="senhaInput" value="#{userController.currentUser.password}" />
+            <h:outputLabel for="senhaInput" value="Senha:" rendered="#{!loginController.logged}"/>
+            <p:password  id="senhaInput" value="#{loginController.password}" rendered="#{!loginController.logged}"/>
 
             <p:spacer width="3"/>
 
-            <p:commandButton value="Entrar" id="loginButton" actionListener="#{userController.login}" ajax="false"/>
+            <p:commandButton value="Entrar" id="loginButton" actionListener="#{loginController.login}" ajax="false" rendered="#{!loginController.logged}"/>
+
+            <p:spacer width="3" rendered="#{loginController.loginFailed}"/>
+            <h:outputLabel value="Falha no login. Tente novamente." rendered="#{loginController.loginFailed}"/>
 
             <p:spacer width="10"/>
 
             <p:commandLink action="signup" ajax="false">
-                <h:outputText value="Novo no site? Cadastre-se clicando aqui!"/>
+                <h:outputText value="Novo no site? Cadastre-se clicando aqui!" rendered="#{!loginController.logged}"/>
             </p:commandLink>
 
             <p:commandLink action="shoppingcart" style="float: right" ajax="false">

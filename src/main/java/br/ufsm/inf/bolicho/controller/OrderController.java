@@ -1,7 +1,5 @@
 package br.ufsm.inf.bolicho.controller;
 
-import br.ufsm.inf.bolicho.dao.DAOException;
-import br.ufsm.inf.bolicho.dao.OrderDAO;
 import br.ufsm.inf.bolicho.model.Order;
 import br.ufsm.inf.bolicho.model.Product;
 import br.ufsm.inf.bolicho.model.User;
@@ -28,12 +26,9 @@ import java.util.List;
 public class OrderController implements Serializable {
 
     private Order currentOrder;
-    private OrderDAO orderDAO;
 
     public OrderController() {
         currentOrder = new Order();
-        orderDAO = new OrderDAO();
-        orderDAO.initialize();
     }
 
     public Order getCurrentOrder() {
@@ -47,14 +42,10 @@ public class OrderController implements Serializable {
     public void addOrder(ActionEvent actionEvent) {
         User user = (User) actionEvent.getComponent().getAttributes().get("user");
 
-            try {
                 currentOrder.setUser(user);
-                orderDAO.insert(currentOrder);
+                //orderDAO.insert(currentOrder);
                 currentOrder = new Order();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Pedido realizado."));
-            } catch (DAOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            }
     }
 
     public void removeOrder(ActionEvent actionEvent) {
@@ -70,11 +61,8 @@ public class OrderController implements Serializable {
     }
 
     public List<Order> getOrderList() {
-        try {
-            return orderDAO.retrieveAll();
-        } catch (DAOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+
+            //return orderDAO.retrieveAll();
         return null;
     }
 

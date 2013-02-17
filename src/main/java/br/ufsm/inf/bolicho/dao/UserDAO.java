@@ -1,16 +1,6 @@
 package br.ufsm.inf.bolicho.dao;
 
-import br.ufsm.inf.bolicho.util.PojoMapper;
 import br.ufsm.inf.bolicho.model.User;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,127 +10,19 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 
-public class UserDAO implements GenericDAO<User> {
+public class UserDAO extends GenericDAO<User> {
 
-    private File jsonData;
-    private List<User> users;
-    private boolean initialized;
-
-    public UserDAO() {
-        jsonData = new File(System.getProperty("jboss.server.data.dir"), "users.json");
-        users = new ArrayList<User>();
-        initialized = false;
-
-        if(!jsonData.exists()) {
-            try {
-                jsonData.createNewFile();
-                initialized = true;
-            } catch (JsonMappingException e) {
-                // Não é erro :D
-            } catch (IOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            }
-        }
+    public void salvar(User user) {
+        save(user);
     }
 
-    public void initialize() {
-        try {
-            FileReader fileReader = new FileReader(jsonData);
-            UserDAO tmp = (UserDAO) PojoMapper.fromJson(fileReader, UserDAO.class);
-            users.clear();
-            users.addAll(tmp.getUsers());
-            initialized = true;
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+    public void alterar(User user) {
+        update(user);
     }
 
-    public List<User> getUsers() {
-        return users;
+    public void excluir(int id) {
+        User u = findById(id);
+        delete(u);
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public int generateId() {
-        return users.size();
-    }
-
-    public void insert(User user) throws DAOException {
-        if(!initialized) {
-            initialize();
-        }
-        user.setId(generateId());
-        users.add(user);
-        try {
-            FileWriter fw = new FileWriter(jsonData);
-            PojoMapper.toJson(this, fw, true);
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-    }
-
-    public User retrieve(User user) throws DAOException {
-        if(!initialized) {
-            initialize();
-        }
-
-        for (User u : users) {
-            if (u.getId() == user.getId()) {
-                return u;
-            }
-        }
-        return null;
-    }
-
-    public List<User> retrieveAll() throws DAOException {
-        if(!initialized) {
-            initialize();
-        }
-
-        return users;
-    }
-
-    public void update(User user) throws DAOException {
-        if(!initialized) {
-            initialize();
-        }
-
-        for (User u : users) {
-            if (u.getId() == user.getId()) {
-                u.setFirstName(user.getFirstName());
-                u.setLastName(user.getLastName());
-                u.setEmail(user.getEmail());
-                u.setPassword(user.getPassword());
-                u.setBillingAddress(user.getBillingAddress());
-                u.setDeliveryAddress(user.getDeliveryAddress());
-                u.setCpf(user.getCpf());
-            }
-        }
-
-        try {
-            FileWriter fw = new FileWriter(jsonData);
-            PojoMapper.toJson(this, fw, true);
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-    }
-
-    public void delete(User user) throws DAOException {
-        Iterator iterator = users.iterator();
-        while(iterator.hasNext()) {
-            User u = (User) iterator.next();
-            if (u.getId() == user.getId()) {
-                iterator.remove();
-            }
-        }
-
-        try {
-            FileWriter fw = new FileWriter(jsonData);
-            PojoMapper.toJson(this, fw, true);
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-    }
 }

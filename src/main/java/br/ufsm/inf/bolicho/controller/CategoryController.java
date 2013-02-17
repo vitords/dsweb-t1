@@ -1,7 +1,5 @@
 package br.ufsm.inf.bolicho.controller;
 
-import br.ufsm.inf.bolicho.dao.CategoryDAO;
-import br.ufsm.inf.bolicho.dao.DAOException;
 import br.ufsm.inf.bolicho.model.Category;
 
 import javax.faces.application.FacesMessage;
@@ -25,12 +23,9 @@ import java.util.List;
 public class CategoryController implements Serializable {
 
     private Category currentCategory;
-    private CategoryDAO categoryDAO;
 
     public CategoryController() {
         currentCategory = new Category();
-        categoryDAO = new CategoryDAO();
-        categoryDAO.initialize();
     }
 
     public void addCategory(ActionEvent actionEvent) {
@@ -39,12 +34,9 @@ public class CategoryController implements Serializable {
                 + " criada!")
         );
 
-        try {
-            categoryDAO.insert(currentCategory);
+         //   categoryDAO.insert(currentCategory);
             currentCategory = new Category();
-        } catch (DAOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+
     }
 
     public void removeCategory(ActionEvent actionEvent) {
@@ -60,11 +52,7 @@ public class CategoryController implements Serializable {
     }
 
     public List<Category> getCategoryList() {
-        try {
-            return categoryDAO.retrieveAll();
-        } catch (DAOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+           // return categoryDAO.retrieveAll();
         return null;
     }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="dsweb" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="fef3961c-4334-4a41-8033-e3389201db1d">
+    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+    <jdbc-url>jdbc:postgresql://localhost:5432/dsweb</jdbc-url>
+    <user-name>postgres</user-name>
+    <user-password>df9bdf98df99df9edf9fdf9c</user-password>
+    <libraries>
+      <library>
+        <url>jar://$PROJECT_DIR$/lib/postgresql-9.2-1002.jdbc4.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+</component>

@@ -8,7 +8,7 @@ import br.ufsm.inf.bolicho.model.Category;
  * Time: 23:43
  * To change this template use File | Settings | File Templates.
  */
-public class NewCategoryDAO extends NewGenericDAO<Category> {
+public class CategoryDAO extends GenericDAO<Category> {
 
     public void salvar(Category category) {
         save(category);

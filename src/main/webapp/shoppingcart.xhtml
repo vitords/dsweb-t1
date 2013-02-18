@@ -59,22 +59,24 @@
             </p:dataTable>
 
         </p:panel>
-
+    </h:form>
+        <h:form id="shoppingDadosForm">
         <p:panel header="Dados do Usuário">
 
         </p:panel>
-
+        </h:form>
+        <h:form id="shoppingCobrancaForm">
         <p:panel header="Dados de Cobrança">
 
         </p:panel>
-
+        </h:form>
+        <h:form id="shoppingButtonForm">
         <p:panel>
-            <p:commandButton value="Finalizar pedido" icon="ui-icon-check" id="placeOrder" actionListener="#{orderController.addOrder}" rendered="#{loginController.logged}">
+            <p:commandButton value="Finalizar pedido" icon="ui-icon-check" id="placeOrder" ajax="false" actionListener="#{orderController.addOrder}" rendered="#{loginController.logged}">
                 <f:attribute name="user" value="#{loginController.loggedUser}" rendered="#{loginController.logged}"/>
             </p:commandButton>
             <h:outputText value="É necessário estar logado para finalizar o pedido" rendered="#{!loginController.logged}" />
         </p:panel>
-
 
     </h:form>
 

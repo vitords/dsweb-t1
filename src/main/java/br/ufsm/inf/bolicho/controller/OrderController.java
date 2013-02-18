@@ -42,11 +42,10 @@ public class OrderController implements Serializable {
 
     public void addOrder(ActionEvent actionEvent) {
         User user = (User) actionEvent.getComponent().getAttributes().get("user");
-
-                currentOrder.setUser(user);
-                new OrderDAO().salvar(currentOrder);
-                currentOrder = new Order();
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Pedido realizado."));
+        currentOrder.setUser(user);
+        new OrderDAO().salvar(currentOrder);
+        currentOrder = new Order();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Pedido realizado."));
     }
 
     public void removeOrder(ActionEvent actionEvent) {

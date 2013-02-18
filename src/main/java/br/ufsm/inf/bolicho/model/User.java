@@ -2,6 +2,7 @@ package br.ufsm.inf.bolicho.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,8 +16,7 @@ import java.io.Serializable;
 public class User implements Serializable {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_gen")
-    @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "first_name")
     private String firstName;
@@ -32,6 +32,8 @@ public class User implements Serializable {
     private String deliveryAddress;
     @Column(name = "cpf")
     private String cpf;
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     public int getId() {
         return id;

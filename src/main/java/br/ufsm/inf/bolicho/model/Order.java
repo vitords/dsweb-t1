@@ -17,23 +17,20 @@ import java.util.List;
 @Table(name = "\"Order\"")
 public class Order implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator =  "order_id_gen")
-    @SequenceGenerator(name = "order_id_gen", sequenceName = "order_id_seq", allocationSize = 1)
     private int id;
-    @OneToOne
-    private User user;
-    @OneToMany
-    @JoinTable(name = "\"order_products\"",
-            joinColumns = {@JoinColumn(name ="product_id")},
-            inverseJoinColumns = {@JoinColumn(name ="order_id")})
+    @ManyToMany
+    @JoinTable(name = "order_products", joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
-    @OneToMany
-    @JoinTable(name = "\"order_selected_product\"",
-            joinColumns = {@JoinColumn(name ="selected_product_id")},
-            inverseJoinColumns = {@JoinColumn(name ="order_id")})
-    @OrderColumn
+    @ManyToMany
+    @JoinTable(name = "order_selected_products", joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "selected_product_id"))
     private List<Product> selectedProducts;
+    @ManyToOne
+    @JoinColumn(name = "user_order", referencedColumnName = "id")
+    private User user;
 
     public int getId() {
         return id;
